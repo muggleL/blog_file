@@ -1,0 +1,12 @@
+{{ if and (not .Params.disable_highlight) (in (string .Content) "</pre>") }}
+{{ $highVer := (.Site.Params.highlightjsVersion | default "9.15.6") }}
+{{ $highCDN := (.Site.Params.highlightjsCDN | default "//cdn.bootcss.com") }}
+{{ if (not (eq $highVer "")) }}
+<script src="{{ $highCDN }}/gh/highlightjs/cdn-release@{{ $highVer }}/build/highlight.min.js"></script>
+{{ $.Scratch.Set "highLangs" .Site.Params.highlightjsLang }}
+{{ range .Params.highlightjsLang }}{{ $.Scratch.Add "highLangs" . }}{{ end }}
+{{ range ($.Scratch.Get "highLangs") }}
+<script src="{{ $highCDN }}/gh/highlightjs/cdn-release@{{ $highVer }}/build/languages/{{ . }}.min.js"></script>{{ end }}
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+{{ end }}
+{{ end }}

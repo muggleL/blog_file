@@ -1,0 +1,55 @@
+baseurl = "/"
+languageCode = "zh-CN"
+title = "Muggle L"
+theme = "hugo-ivy"
+googleAnalytics = ""
+disqusShortname = ""
+ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
+preserveTaxonomyNames = true
+footnotereturnlinkcontents = "↩"
+
+
+
+[permalinks]
+    post = "/post/:year/:slug/"
+    note = "/note/:year/:month/:day/:slug/"
+    daily = "/daily/:year/:month/:day/:slug/"
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+[[menu.main]]
+    name = "Categories"
+    url = "/categories/"
+    weight = 3
+[[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 4
+[[menu.main]]
+ 	name = "Search"
+ 	url = "/search/"
+ 	weight = 5
+[[menu.main]]
+ 	name = "Slice"
+ 	url = "/slice/"
+ 	weight = 6
+
+[params]
+    description = "Technology Is Muggle's Magic"
+    footer = "&copy; [DG](https://blog.o0o0o0.de) Since 2016 | [Github](https://github.com/muggleL) | [Twitter](https://twitter.com/FF_SHINE) | Theme By [Yihui Xie](https://yihui.name) | [RSS](/index.xml) Feed"
+    highlightjsVersion = "9.15.10"
+    highlightjsCDN = "//cdn.jsdelivr.net"
+    highlightjsLang = ["yaml", "tex", "go", "powershell", "sql", "bash"]
+    highlightjsTheme = "agate"
+
+[params.valine]
+    enable = true
+    appId = "ipR0UGBwhzhpRfzhlNwHl4rR-MdYXbMMI"
+    appKey = "inbruR2BGaSxMmHIeFO4S0Rv"
+    notify = false
+    verify = false
+    avatar = "monsterid"
+    placeholder ="说点什么呗~" 
+    visitor = false
