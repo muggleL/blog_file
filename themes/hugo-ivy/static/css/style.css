@@ -67,7 +67,11 @@ blockquote {
 pre, code {
   font-size: .91em;
 }
+/* 首行空两个字符 */
+p {
+text-indent: 2rem;
 
+}
 pre code {
   display: block;
   border: 1px solid #ddd;

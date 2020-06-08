@@ -1,4 +1,4 @@
-cd /Users/d.glua/git/blog
+cd /home/ss/git/blog_file
 
 pwd
 hugo --theme=hugo-ivy --baseUrl="https://blog.o0o0o0.de"
