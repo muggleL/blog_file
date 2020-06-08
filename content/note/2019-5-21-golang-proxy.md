@@ -45,5 +45,5 @@ func main() {
 }
 ```
 
- 　　但是 `transport` 的 `Dial` 属性已经被官方弃用，推荐代替的是 `DialContext` 属性。但是 `proxy` 包中的 `SOCKS5` 只能返回一个只包含 `Dial` 的 `Dialer`，不知到官方什么时候更新。
+但是 `transport` 的 `Dial` 属性已经被官方弃用，推荐代替的是 `DialContext` 属性。但是 `proxy` 包中的 `SOCKS5` 只能返回一个只包含 `Dial` 的 `Dialer`，不知到官方什么时候更新。
 

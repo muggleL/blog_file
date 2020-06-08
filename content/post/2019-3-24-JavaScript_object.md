@@ -9,7 +9,7 @@ tags:
 categories: 
   - JavaScript
 ---
-<p style="text-indent:2em">本文记录了 JavaScript 面对对象的一些基础方法，如对象的属性，对象的遍历，对象的复制与合并等。</p>
+本文记录了 JavaScript 面对对象的一些基础方法，如对象的属性，对象的遍历，对象的复制与合并等。
 ## 多词属性
 
   可以用多字词语来作为属性名
