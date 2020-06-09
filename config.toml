@@ -7,7 +7,10 @@ disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
-
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 
 [permalinks]
@@ -32,9 +35,13 @@ footnotereturnlinkcontents = "↩"
  	url = "/search/"
  	weight = 5
 [[menu.main]]
+ 	name = "Pdfs"
+ 	url = "/pdfs/"
+ 	weight = 6
+[[menu.main]]
  	name = "Slice"
  	url = "/slice/"
- 	weight = 6
+ 	weight = 7
 
 [params]
     description = "Technology Is Muggle's Magic"

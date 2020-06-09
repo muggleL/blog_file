@@ -70,7 +70,10 @@ pre, code {
 /* 首行空两个字符 */
 p {
 text-indent: 2rem;
+}
 
+blockquote p, li p{
+text-indent: 0;
 }
 pre code {
   display: block;
