@@ -13,4 +13,4 @@ author: DG
 
 - [性别战争](/PDF/性别战争.pdf)
 
-
+- [rust-book-chinese](/PDF/rust-book-chinese.pdf)
