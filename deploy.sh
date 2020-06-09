@@ -1,6 +1,7 @@
 cd /home/ss/git/blog_file
 git add --all
 git commit -m $1
+git push
 pwd
 hugo --theme=hugo-ivy --baseUrl="https://blog.o0o0o0.de"
 
