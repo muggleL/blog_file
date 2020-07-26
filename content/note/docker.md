@@ -422,18 +422,19 @@ ONBUILD <其它指令>
     # 执行
     CMD ["./app"]
 ```
-
-    > 1. 可以只构建某一段的镜像
-    >
-    >    ```bash
-    >    docker build --target builder -t name/imagename:tag .
-    >    ```
-    >
-    > 2. 构建时，也能从其他镜像复制文件
-    >
-    >    ```bash
-    >    COPY --from=nginx:latest /etc/nginx/nginx.conf /nginx.conf
-    >    ```
+> 1. 可以只构建某一段的镜像
+>
+>    ```bash
+>    docker build --target builder -t name/imagename:tag .
+>    ```
+>
+> 2. 构建时，也能从其他镜像复制文件
+>
+>    ```bash
+>    COPY --from=nginx:latest /etc/nginx/nginx.conf /nginx.conf
+>    ```
+>
+>    
 
 ## 容器的操作
 
@@ -481,6 +482,8 @@ docker run -d ...
     > 这里输入 `exit`不会导致容器停止，所以更推荐用 `exec`
 
   
+
+
 
 
 
