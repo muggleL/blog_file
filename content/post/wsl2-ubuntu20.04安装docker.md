@@ -32,7 +32,9 @@ https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-kernel
 wsl --set-default-version 2
 ```
 
-- ### 从 Microsoft Store 下载 Linux 系统
+- ### [从 Microsoft Store 下载 Linux 系统](https://www.microsoft.com/zh-cn/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab)
+
+
 
 # 2. 配置docker 源
 ```bash
