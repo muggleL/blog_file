@@ -7,7 +7,34 @@ date: '2020-06-13'
 slug: wsl2-ubuntu20.04-install-docker
 ---
 
-# 1. 配置docker 源
+# 1. win10 2004 开启 wsl2
+- ### 开启虚拟化平台组件
+
+```bash
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+```
+
+- ### 开启 Linux 子系统组件
+
+```bash
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
+
+- ### 下载 wsl2 独立内核并安装
+
+```bash
+https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-kernel
+```
+
+- ### 设置 wsl2 为默认 wsl
+
+```bash
+wsl --set-default-version 2
+```
+
+- ### 从 Microsoft Store 下载 Linux 系统
+
+# 2. 配置docker 源
 ```bash
 sudo apt update
 ```
@@ -20,17 +47,17 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```bash
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 ```
-# 2. 安装
+# 3. 安装
 ```bash
 sudo apt update
 sudo apt install docker-ce
 ```
-# 3. 配置
-- 启动
+# 4. 配置
+- ### 启动
 ```bash
 sudo service docker start
 ```
-- 用户配置
+- ### 用户配置
 ```bash
 sudo usermod -aG docker ${USER}
 ```
