@@ -58,69 +58,69 @@ sudo systemctl restart docker
 > 通过 [polipo](https://wiki.archlinux.org/index.php/Polipo) 将 `socks` 代理转换成 `http` 代理。
 
   - 创建 `systemd` 的插入式([drop-in](https://wiki.archlinux.org/index.php/systemd#Drop-in_files)) 目录
-    ```bash
+```bash
     sudo mkdir -p /etc/systemd/system/docker.service.d
-    ```
+```
   - 建立配置文件
-    ```bash
+```bash
     sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
-    ```
-    ```bash
+```
+```bash
     [Service]
     #NO_PROXY 为代理白名单
     Environment="HTTP_PROXY=http://localhost:8123/" "NO_PROXY=localhost,127.0.0.1,docker-registry.example.com,.corp"
-    ```
+```
   - 刷新
-    ```bash
+```bash
     sudo systemctl daemon-reload
-    ```
+```
   - 重启 `Docker`
-    ```bash
+```bash
     sudo systemctl restart docker
-    ```
-    
+```
+
     > 通过 `docker info` 能看到代理信息。
 
 ## 基础命令
 
 - ### 查看版本
 
-  ```bash
+```bash
   docker --version
   docker info
-  ```
+```
 
 - ### Hello-world
   
-  ```bash
+```bash
   docker run hello-world
-  ```
-  
+```
+
 - ### List Image
 
-  ```bash
+```bash
   docker image ls
-  ```
+```
 
   > `docker image ls --help` 查看所有操作。
 
 - ### List Container
 
-  ```bash
+```bash
   docker container ls       # 列出正在运行的容器
   docker container ls --all # 列出所有
   docker container ls --aq  # all in 
-  ```
+```
 
   > `docker container ls --help` 可以查看所有的操作。
-  
+
 - 启动容器
-  ```bash
+```bash
   docker run image:tag # 启动容器
   docker run -it image:tag # 进入交互式 tty 环境
   docker run --rm image:tag # 容器退出后自动删除
   docker run image:tag command # 容器启动后执行 command 命令
-  ```
+```
   >`docker run --help` 可以查看所有的操作。
 
 
@@ -128,9 +128,9 @@ sudo systemctl restart docker
 
 ### 1. FROM
 
-  ```bash
+```bash
 FROM image
-  ```
+```
 
 `FROM` 指定基础镜像，是 Dockerfile 的必备指令，并且必须是第一条指令。`FROM` 可以指定基础服务类镜像，如 [nginx](https://hub.docker.com/_/nginx/) 、[redis](https://hub.docker.com/_/redis/) 等，语言镜像 [python](https://hub.docker.com/_/python/) 、[golang](https://hub.docker.com/_/golang/) 等。也可以是操作系统类镜像，如 [ubuntu](https://hub.docker.com/_/ubuntu/) 、[alpine](https://hub.docker.com/_/alpine/) 等。
 
@@ -142,15 +142,15 @@ RUN 指定执行的命令有 `shell 格式 ` 和 `exec 格式` 两种形式。
 
 - shell 格式
 
-  ```bash
+```bash
   RUN python app.py
-  ```
+```
 
 - exec 格式
 
-  ```bash
+```bash
   RUN ["python", "app.py"]
-  ```
+```
 
 `Dockerfile` 中每一个指令都会建立一层，`RUN` 也不例外。因此最好在一个 `RUN` 中执行完所有的命令。为了保证镜像的简洁，切记要清除 `RUN` 执行过程中产生的不必要的中间文件和缓存文件。
 
@@ -160,20 +160,20 @@ RUN 指定执行的命令有 `shell 格式 ` 和 `exec 格式` 两种形式。
 
 - shell 格式
 
-  ```bash
+```bash
   COPY [--chown=<user>:<group>] <源路径>... <目标路径>
   # 支持通配符 参考 https://golang.org/pkg/path/filepath/#Match
   COPY hom* /app
   COPY hom?.txt /app
   # 用户权限
   COPY --chown=theuser:thegroup files* /app
-  ```
+```
 
 - exec 格式
 
-  ```bash
+```bash
   COPY [--chown=<user>:<group>] ["<源路径1>",... "<目标路径>"]
-  ```
+```
 
 `COPY` 会保留原文件，如果指定目录不存在，会自动创建该目录。`COPY` 也会保留源文件的各种元数据，比如读、写、执行、变更时间等。
 
@@ -197,22 +197,22 @@ RUN 指定执行的命令有 `shell 格式 ` 和 `exec 格式` 两种形式。
 
 - shell 格式
 
-  ```bash
+```bash
   CMD <命令>
-  ```
+```
 
 - exec 格式
 
-  ```bash
+```bash
   CMD ["可执行文件", "参数1", "参数2"...] # 只能用 " 不能用 '
-  ```
+```
 
 - 参数列表格式
 
-  ```bash
+```bash
   # 指定 ENTRYPOINT 之后
   CMD ["参数1", "参数2", "参数3"...]
-  ```
+```
 
 `CMD` 指定容器启动时所运行的程序与参数。
 
@@ -384,7 +384,7 @@ ONBUILD <其它指令>
 
   - app.go
 
-    ```go
+```go
     package main
     
     import "fmt"
@@ -392,11 +392,11 @@ ONBUILD <其它指令>
     func main() {
         fmt.Println("hello world")
     }
-    ```
-    
+```
+
   - Dockerfile
-  
-    ```bash
+
+```bash
     # 分段 1
     FROM golang:1.12-alpine as builder
     # 配置国内源 以及安装 git
@@ -421,8 +421,8 @@ ONBUILD <其它指令>
     COPY --from=0 /go/src/github.com/go/helloworld/app .
     # 执行
     CMD ["./app"]
-    ```
-  
+```
+
     > 1. 可以只构建某一段的镜像
     >
     >    ```bash
@@ -459,29 +459,31 @@ docker run -d ...
 
 - `attach`
 
-  ```bash
+```bash
   docker attach <容器名称或id>
-  ```
+```
 
   > 如果在这里输入 `exit` 会导致容器停止。
-  
 
 - `exec`
 
 
-  ```bash
+```bash
   docker exec -it <容器名称或id> bash # 启动 bash --> 容器中有bash 才能启动成功。
-  ```
-  
+```
+
     `-i` 使 `STDIN` 始终处于可交互状态。
-
+    
     `-t` 虚拟tty
-
+    
     `-it` 一起用就可以看到熟悉的 linux 终端环境。
-
+    
     > 这里输入 `exit`不会导致容器停止，所以更推荐用 `exec`
 
   
+
+
+
 
 ### 4. 导入与导出
 
@@ -489,39 +491,39 @@ docker run -d ...
 
   - export
 
-    ```bash
+```bash
     # 导出 id 为 7691a814370e 的容器快照，保存为 ubuntu.tar
     docker export -o ubuntu.tar 7691a814370e
     docker export 7691a814370e > ubuntu.tar 
-    ```
+```
   - save
-    ```bash
+```bash
     # 镜像保存为文件
     docker save -o ubuntu.tar test/ubunt:v1.0
-    ```
+```
 
 - 导入
 
   - import
 
-    ```bash
+```bash
     # 导入名为 ubuntu.tar 的容器快照
   docker import ubuntu.tar test/ubuntu:v1.0
     cat ubuntu.tar | docker import - test/ubuntu:v1.0 
     # 从网络导入
     docker import http://example.com/exampleimage.tgz example/imagerepo
-    ```
+```
 
-  
+
   - load
-  
-    ```bash
+
+```bash
     # 导入 ubuntu.tar 为镜像
     docker load -i ubuntu.tar
     docker load < ubuntu.tar
-    ```
-  
-  
+```
+
+
   > `export` 、`import` 相当于虚拟机快照，只保存当前状态，不保存元数据。
   >
   > `save` 、`load` 相当于镜像的复制。
@@ -571,33 +573,33 @@ docker inspect web # 在这能看到 web 挂载的数据卷的信息
 
 #### 挂载目录
 
-  ```bash
+```bash
     docker run --name web \
 	  --mount type=bind,source=/my/host/path,target=/webapp \
 	  # -v /the/host/path:/webapp \
 	  --rm -d -p  80:80 dockerdemo
-  ```
+```
 
   > 此时被挂载的目录可以被容器读写（以root身份）。
 
   挂载时，加 `readonly` 参数，指定为只读：
 
-  ```bash
+```bash
   docker run --name web \
   --mount type=bind,source=/my/host/path,target=/webapp,readonly \
   # -v /the/host/path:/webapp:ro\
   --rm -d -p  80:80 dockerdemo
-  ```
+```
 
 
 #### 挂载文件
 
-  ```bash
+```bash
   docker run --name web \
 	  --mount type=bind,source=$HOME/.bash_history,target=/root/.bash_history \
 	  # -v $HOME/.bash_history:/root/.bash_history \
 	  --rm -d -p  80:80 dockerdemo
-  ```
+```
 
 ## 网络
 
@@ -605,33 +607,33 @@ docker inspect web # 在这能看到 web 挂载的数据卷的信息
 
 - 随机映射
 
-  ```bash
+```bash
   docker run -P # 随机映射 49000~49900 之间的端口。
-  ```
+```
 
 - 指定端口，所有地址
 
-  ```bash
+```bash
   docker run -p 8080:80
-  ```
+```
 
 - 指定地址，指定端口
 
-  ```bash
+```bash
   docker run -p 127.0.0.1:8080:80
-  ```
+```
 
 - 指定地址，随机端口
 
-  ```bash
+```bash
   docker run -p 127.0.0.1::80
-  ```
+```
 
 - 查看端口配置
 
-  ```bash
+```bash
   docker port <容器名称> <容器内部端口>
-  ```
+```
 
 > `-p` 标记支持多端口映射
 
@@ -647,14 +649,14 @@ docker network create -d bridge my-net # -d 指定网络类型
 
 - 创建第一个容器，并连接网络。
 
-  ```bash
+```bash
   docker run -it --rm --name net1 --network my-net busybox sh
-  ```
+```
 
 - 创建第二个容器，连接同一网络。
 
-  ```bash
+```bash
   docker run -it --rm --name net2 --network my-net busybox sh
-  ```
+```
 
 这时候 `net1` 和 `net2` 可以相互 ping 通。
