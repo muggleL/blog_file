@@ -374,6 +374,14 @@ ONBUILD <其它指令>
 
 只有当以当前镜像为基础镜像构建项目时，才会执行的指令。
 
+### 16. 使用 Dockerfile 构建镜像
+
+```bash
+docker build -t imageName:tag .
+```
+
+> 切记不要忘记后面的点（dot）
+
 ## Dockerfile 多段构建
 
 `Docker` 多段构建将编译、测试、打包等环境与运行环境分开。
@@ -406,9 +414,8 @@ ONBUILD <其它指令>
     WORKDIR /go/src/github.com/go/helloworld/
     
     COPY app.go .
-    # 依赖和编译
-    RUN go get -d -v github.com/go-sql-driver/mysql \
-        && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+    # 编译
+    RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
     
     # 分段 2
     FROM alpine:latest as prod
@@ -482,6 +489,7 @@ docker run -d ...
     > 这里输入 `exit`不会导致容器停止，所以更推荐用 `exec`
 
   
+
 
 
 
@@ -663,3 +671,5 @@ docker network create -d bridge my-net # -d 指定网络类型
 ```
 
 这时候 `net1` 和 `net2` 可以相互 ping 通。
+
+> 2020.8.1 更新添加 docker 构建命令&&优化Dockerfile 例子
