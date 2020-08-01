@@ -92,7 +92,7 @@ mkdir data
 
 先看以下 `Dockerfile` 内容
 
-```dockerfile
+```bash
     # 分段 1
     FROM golang:1.12-alpine as builder
     # 配置国内源 以及安装 git
@@ -102,7 +102,7 @@ mkdir data
     WORKDIR /go/src/github.com/go/helloworld/
     
     COPY app.go .
-    # 依赖和编译
+    # 编译
     RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
     
     # 分段 2
@@ -132,7 +132,7 @@ func main() {
 
 docker-compose
 
-```yaml
+```bash
 # 这个项目没有什么端口之类的依赖关系，所以及其简单
 version: '3'
 
@@ -145,7 +145,7 @@ services:
 
 myphp.dockerfile 内容
 
-```dockerfile
+```bash
 FROM php:7.1.22-fpm
 
 # 安装依赖
@@ -159,7 +159,7 @@ RUN docker-php-ext-install pdo pdo_mysql mcrypt zip gd
 
 nginx.dockerfile
 
-```dock
+```bash
 FROM nginx:1.10
 ADD vhost.conf /etc/nginx/conf.d/default.conf
 ```
@@ -235,7 +235,3 @@ services:
 ```
 
 
-
-# Docker-compose 其它功能
-
-- 
