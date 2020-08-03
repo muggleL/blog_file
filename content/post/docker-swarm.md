@@ -7,13 +7,15 @@ categories:
 slug: docker-swarm
 ---
 
-### 修改主机名称
+# 前戏
+
+## 修改主机名称
 
 ```bash
 sudo hostnamectl set-hostname manager131
 ```
 
-### ubuntu 静态 IP
+## ubuntu 静态 IP
 
 1. 编辑  `/etc/netplan/` 下的 `yaml` 文件
 
@@ -36,15 +38,13 @@ sudo hostnamectl set-hostname manager131
 
 > 注意网关地址不要填错了，否则可能上不了网
 
-3. 提交更改
+2. 提交更改
 
 ```bash
    sudo netplan apply
 ```
 
-   
-
-### 启动 docker swarm
+## 启动 docker swarm
 
 ```bash
 docker swarm init --advertise-addr 192.168.174.131
@@ -56,7 +56,7 @@ docker swarm init --advertise-addr 192.168.174.131
 docker node ls  # 查看所有的节点
 ```
 
-### 添加节点
+## 添加节点
 
 登录 work 服务器
 
@@ -67,7 +67,9 @@ docker swarm join \
 
 此时在 `manage` 服务器中运行 `docker service ls` 可以看见 `worker` 节点了
 
-### 运行一个服务
+# 进行
+
+## 运行一个服务
 
 在 `manager` 中运行：
 
@@ -132,7 +134,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 7060cc23a6e1        alpine:latest       "ping baidu.com"    6 minutes ago       Up 6 minutes                            helloworld.1.pb49uksjxqd8jm8pdz9dwwqhz
 ```
 
-### Change Scale
+## Change Scale
 
 修改任务（task）个数
 
@@ -167,13 +169,13 @@ cq9go8er8w45  helloworld.5  alpine:latest   node132    Running     Running about
 
 服务被分到各个节点运行
 
-### Delete Service
+## Delete Service
 
 ```bash
 docker service rm helloworld
 ```
 
-### 运行一个滚动更新的服务
+## 运行一个滚动更新的服务
 
 - 创建一个 `redis` 服务
 
@@ -230,7 +232,7 @@ jg6ducfn797w  redis.3     redis:3.0.7    manager131   Running     Running 5 minu
 wqq5t17sxh2z  \_ redis.3  redis:3.0.6    manager131   Shutdown    Shutdown 6 minutes ago
 ```
 
-### 踢出一个节点（set a node to drain avaliability）
+## 踢出一个节点（set a node to drain avaliability）
 
 - 查看节点情况
 
@@ -296,11 +298,27 @@ ss@manager131:~$ docker node update --availability active node133
 node133
 ```
 
-### routing mesh
+## routing mesh
 
 开启一个新的nginx 服务器
 
 ```bash
 docker service create --name my-web --publish published=8080,target=80 --replicas 2 nginx
 ```
+
+也可以简写成
+
+```bash
+docker service create --name my-web -p 8080:80 --replicas 2 nginx
+```
+
+`swarm` 会将访问 `nginx` 的负载均衡到两个服务器上，但是四个服务器在同一个网络中，任意访问一个服务器的 `8080` 端口都能访问到 `nginx`
+
+# 深入
+
+## docker swarm 与 docker compose 的结合
+
+待续
+
+
 
