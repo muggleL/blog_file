@@ -45,7 +45,7 @@ footnotereturnlinkcontents = "↩"
 
 [params]
     description = "Technology Is Muggle's Magic"
-    footer = "&copy; [DG](https://blog.o0o0o0.de) Since 2016 | [Github](https://github.com/muggleL) | [Twitter](https://twitter.com/FF_SHINE) | Theme By [Yihui Xie](https://yihui.name) | [RSS](/index.xml) Feed"
+    footer = "&copy; [DG](https://blog.degen.run) Since 2016 | [Github](https://github.com/muggleL) | [Twitter](https://twitter.com/FF_SHINE) | Theme By [Yihui Xie](https://yihui.name) | [RSS](/index.xml) Feed"
     highlightjsVersion = "9.15.10"
     highlightjsCDN = "//cdn.jsdelivr.net"
     highlightjsLang = ["yaml", "tex", "go", "powershell", "sql", "bash"]

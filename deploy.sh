@@ -3,7 +3,7 @@ git add --all
 git commit -m "$*"
 git push
 pwd
-hugo --theme=hugo-ivy --baseUrl="https://blog.o0o0o0.de"
+hugo --theme=hugo-ivy --baseUrl="https://blog.degen.run"
 
 # 部署
 cd ../muggleL
