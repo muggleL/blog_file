@@ -21,6 +21,8 @@ categories:
   ## 复制虚拟机
 
 ![批注 2020-08-03 194629.png](https://i.loli.net/2020/08/03/AnZhlWq9Ir8LYSo.png)
+
+
 ![批注 2020-08-03 194932.png](https://i.loli.net/2020/08/03/Q9qJWCI2ap3BLKP.png)
 
 > 一定要选择创建完整克隆

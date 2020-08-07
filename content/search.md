@@ -6,7 +6,8 @@ author: DG
 ---
 
 <script
-            src="https://code.jquery.com/jquery-3.4.1.js"
+            /*src="https://code.jquery.com/jquery-3.4.1.js"*/
+        	src="http://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous"></script>
 <script src="/js/parserxml.js"></script>
