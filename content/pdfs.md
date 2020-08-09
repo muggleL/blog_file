@@ -15,6 +15,6 @@ author: DG
 
 - [Go语言圣经](/PDF/Go语言圣经.pdf)
 
-- [Linux 命令行（中文版）](/PDF/Linux命令行.pdf)
-
 - [Linux 命令行（英文版）](/PDF/Linux Command Line.pdf)
+
+- [Linux 命令行（中文版）](/PDF/Linux命令行.pdf)
