@@ -10,6 +10,6 @@ author: DG
 - [性别战争](/PDF/性别战争.pdf)
 - [rust-book-chinese](/PDF/rust-book-chinese.pdf)
 - [Go语言圣经](/PDF/Go语言圣经.pdf)
-- [Linux 命令行（中文版）](Linux命令行（中文版）.pdf)
-- [Linux 命令行（中文版）](/PDF/Linux 命令行（英文版）.pdf)
+- [Linux 命令行（中文版）](/PDF/Linux命令行.pdf)
+- [Linux 命令行（英文版）](/PDF/Linux Command Line.pdf)
 
