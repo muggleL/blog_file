@@ -44,7 +44,7 @@ footnotereturnlinkcontents = "↩"
  	weight = 7
 [[menu.main]]
     name = "MyGoooosh Git"
-    url = "https://git.mygoooosh.com"
+    url = "https://git.mygoooosh.com/explore/repos"
     weight = 8
 
 [params]
