@@ -42,6 +42,10 @@ footnotereturnlinkcontents = "↩"
  	name = "Slice"
  	url = "/slice/"
  	weight = 7
+[[menu.main]]
+    name = "MyGoooosh Git"
+    url = "https://git.mygoooosh.com"
+    weight = 8
 
 [params]
     description = "Technology Is Muggle's Magic"
