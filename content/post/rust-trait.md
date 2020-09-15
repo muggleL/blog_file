@@ -117,3 +117,34 @@ pub fn test() {
 ```
 
 ## 抽象类型
+### TraitObject
+TraitObject 是将具有相同行为的具体类型的集合抽象成一个不可实例化的类型，等价于面对对象语言中的抽象类型（Abstract Object）。
+trait 对象实例：
+```rust
+#[derive(Debug)]
+struct Foo;
+
+trait Bar {
+    fn baz(&self);
+}
+impl Bar for Foo {
+    fn baz(&self) {
+        println!("{:?}.", self);
+    }
+}
+
+fn static_dispatch<T>(t: &T) where T: Bar { // 这里是 trait 泛型限定
+    t.baz();
+}
+
+fn dynamic_dispatch(t: &dyn Bar) { // Bar 被当成了一个类型。
+    t.baz();
+}
+
+pub fn test() {
+    let foo = Foo;
+    static_dispatch(&foo);
+    dynamic_dispatch(&foo);
+    
+}
+```
