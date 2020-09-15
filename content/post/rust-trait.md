@@ -148,3 +148,58 @@ pub fn test() {
     
 }
 ```
+
+### Impl Trait
+
+实例：
+```rust
+use std::fmt::Debug;
+
+pub trait Fly {
+    fn fly(&self) -> bool;
+}
+
+#[derive(Debug)]
+struct Duck;
+
+#[derive(Debug)]
+struct Pig;
+
+impl Fly for Duck {
+    fn fly(&self) -> bool {
+        true
+    }
+}
+
+impl Fly for Pig {
+    fn fly(&self) -> bool {
+        false
+    }
+}
+
+fn fly_static(s: impl Fly + Debug) -> bool { // impl 作为参数类型
+    s.fly()
+}
+
+fn can_fly(s: impl Fly + Debug) -> impl Fly { // impl trait 作为返回值类型
+    if s.fly() {
+        println!("{:?} can fly.", s);
+    } else {
+        println!("{:?} can't fly.", s);
+    }
+    s
+}
+
+pub fn test() {
+    let pig = Pig;
+    let duck = Duck;
+
+    println!("{}.", fly_static(pig));
+    println!("{}.", fly_static(Duck));
+
+    let pig = Pig;
+    let duck = duck;
+    let _ = can_fly(pig);
+    let _ = can_fly(duck);
+}
+```
