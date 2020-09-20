@@ -1,7 +1,7 @@
 ---
 title: VMware 虚拟机克隆
 date: '2020-08-03'
-slug: clone_VM
+slug: clone-VM
 author: DG
 tags: 
   - 编程

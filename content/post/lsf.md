@@ -4,7 +4,7 @@ tags:
 categories:
   - 古文
 date: '2017-08-13'
-slug: lsf
+slug: 洛神赋
 ---
 
 魏晋/曹植

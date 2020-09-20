@@ -1,6 +1,6 @@
 ---
 title: 亚美尼亚大屠杀
-slug: ymny
+slug: 亚美尼亚大屠杀
 categories:
   - 历史
 date: '2017-12-30'

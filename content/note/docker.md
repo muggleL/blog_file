@@ -7,7 +7,7 @@ tags:
   - 代码
 categories: 
   - Docker
-slug: manjaro-docker
+slug: tutorial-of-manjaro-docker
 ---
 
 *<font style="color:red; font-size:13px">不同发行版的指令，文件位置略有不同，本文仅以 arch 及其衍生系统为准。</font>*

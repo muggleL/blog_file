@@ -2,7 +2,7 @@
 title: 树莓派 mongodb-for-docker 配置
 date: '2019-09-07'
 author: DG
-slug: mongo-for-respi
+slug: mongodb-docker-for-respi
 tags: 
   - 日常
   - 折腾

@@ -65,4 +65,4 @@ sudo usermod -aG docker ${USER}
 ```
 
 
-> 更多 Docker 的使用方法可参考往期文章：[Manjaro Docker 用法](http://blog.mygoooosh.com/note/2019/08/23/manjaro-docker/#%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93)
+> 更多 Docker 的使用方法可参考往期文章：[Manjaro Docker 用法](http://blog.mygoooosh.com/note/2019/08/23/tutorial-of-manjaro-docker/#%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93)

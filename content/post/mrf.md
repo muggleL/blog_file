@@ -4,7 +4,7 @@ tags:
 categories:
   - 古文
 date: '2017-11-12'
-slug: mrf-sng-dtzhsf
+slug: 美人赋三篇
 ---
 
 **美人赋**
