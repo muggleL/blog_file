@@ -1,5 +1,5 @@
 ---
-title: Rust Trait
+title: 🏹Rust Trait
 date: '2020-09-13'
 author: DG
 slug: rust-trait
@@ -137,7 +137,7 @@ fn static_dispatch<T>(t: &T) where T: Bar { // 这里是 trait 泛型限定
     t.baz();
 }
 
-fn dynamic_dispatch(t: &dyn Bar) { // Bar 被当成了一个类型。
+fn dynamic_dispatch(t: &dyn Bar) { // Bar 被当成了一个类型。（动态分发，trait 2018 添加 dyn 关键词跟impl trait 的静态分发以示区别。
     t.baz();
 }
 
@@ -150,6 +150,7 @@ pub fn test() {
 ```
 
 ### Impl Trait
+Impl Trait 目前只能在入参和返回值两个地方使用。Impl Trait 抽象限定使用的是静态分发，能够在调用时根据上下文信息推导出具体类型。
 
 实例：
 ```rust
@@ -181,7 +182,7 @@ fn fly_static(s: impl Fly + Debug) -> bool { // impl 作为参数类型
     s.fly()
 }
 
-fn can_fly(s: impl Fly + Debug) -> impl Fly { // impl trait 作为返回值类型
+fn can_fly(s: impl Fly + Debug) -> impl Fly { // impl trait 作为返回值类型 给返回值添加限定范围
     if s.fly() {
         println!("{:?} can fly.", s);
     } else {
@@ -204,4 +205,30 @@ pub fn test() {
 }
 ```
 
-> 未完待续...
+## 标签 Trait
+标签 trait 是对类型的约束，当开发者使用这些带有约束标签的类型时，编译器会进行严格检查，确保这些类型是‘合格’的。
+Rust 提供了5个重要的标签trait，都被定义在 `std::marker` 中，他们分别是:
+- Sized trait
+- Unsize trait
+- Copy trait
+- Send trait
+- Sync trait
+
+### Sized trait 与 Unsize trait
+Sized 标签用来功编译器识别可以在编译器确定大小的类型，Unsize则与之相反。
+Sized 是纯粹的标签，该trait 的实现如下：
+```rust
+#[lang = "sized"] // 表示Sized 的声明为 sized
+pub trait Sized {
+    // 实现为空
+}
+```
+Rust 中大部分类型都是默认 Sized，如泛型 `struct Foo<T>(T)` 等价于 `struct Foo<T: Sized>(T)`。
+Rust 中有只有两种动态大小的类型 `trait` 和 `[T]`。 `[T]` 表示一定数量的 T 在内存中排列，但是不知道具体的数量，所以他带下是不确定的。用 `Unsize` 来标记。
+`?sized` 包含了两种标记类型所以 `Bar<T: ?sized>(T)` 支持编译其可确定大小的类型和不可确定大小的类型。
+### Copy trait
+
+### Sync trait 与 Send trait
+
+
+> 未完待续 ...

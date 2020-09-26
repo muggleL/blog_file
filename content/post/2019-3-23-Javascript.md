@@ -1,5 +1,5 @@
 ---
-title: JavaScript 基础
+title: 🚌JavaScript 基础
 date: '2019-03-23'
 slug: js-foundation
 author: DG

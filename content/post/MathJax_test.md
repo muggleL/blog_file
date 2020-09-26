@@ -1,5 +1,5 @@
 ---
-title: MathJax 测试
+title: ⛏MathJax 测试
 slug: mathJax_test
 categories:
 date: '2020-06-08'

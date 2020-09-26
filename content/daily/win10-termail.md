@@ -1,5 +1,5 @@
 ---
-title: windows 终端的傻逼逻辑
+title: ✏️🖥️windows 终端的傻逼逻辑
 date: '2019-05-22'
 author: DG
 slug: windows终端的傻逼逻辑

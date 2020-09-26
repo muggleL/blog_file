@@ -1,5 +1,5 @@
 ---
-title: manjaro 下第三方网易云音乐feeluown安装
+title: 🎶manjaro 下第三方网易云音乐feeluown安装
 author: DG
 slug: manjaro-feeluown
 categories:

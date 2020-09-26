@@ -1,5 +1,5 @@
 ---
-title: Wsl2 Ubuntu20.04 配置 docker
+title: 🐜Wsl2 Ubuntu20.04 配置 docker
 tags: 
 categories:
   -  wsl

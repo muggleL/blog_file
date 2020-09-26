@@ -1,5 +1,5 @@
 ---
-title: linux 开机出现grub rescue的恢复方法
+title: 💻linux 开机出现grub rescue的恢复方法
 author: DG
 tags:
   - 折腾

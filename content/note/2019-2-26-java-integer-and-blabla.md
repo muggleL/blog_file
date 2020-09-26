@@ -1,5 +1,5 @@
 ---
-title: 由反射引起的 Java 常量名与变量名的思考
+title: ☕️由反射引起的 Java 常量名与变量名的思考
 date: '2019-02-26'
 author: DG
 slug: java-reflect

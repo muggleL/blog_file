@@ -1,5 +1,5 @@
 ---
-title: windows 创建软/硬链接
+title: 🖥️windows 创建软/硬链接
 date: '2019-05-27'
 author: DG
 slug: windows-mklink

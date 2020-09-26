@@ -1,5 +1,5 @@
 ---
-title: 亚美尼亚大屠杀
+title: 📚亚美尼亚大屠杀
 slug: 亚美尼亚大屠杀
 categories:
   - 历史

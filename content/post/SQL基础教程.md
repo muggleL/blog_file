@@ -1,5 +1,5 @@
 ---
-title: SQL 拾遗
+title: 🥊SQL 拾遗
 date: '2020-08-16'
 slug: sql-tutorial
 author: DG

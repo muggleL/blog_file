@@ -1,5 +1,5 @@
 ---
-title: SMM 框架整合
+title: 🦉SMM 框架整合
 date: '2019-10-25'
 slug: ssm-framework
 author: DG

@@ -1,5 +1,5 @@
 ---
-title: Linux 定时任务一定要用绝对路径
+title: ✏️Linux 定时任务一定要用绝对路径
 date: '2019-05-27'
 author: DG
 slug: Linux定时任务一定要用绝对路径
