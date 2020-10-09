@@ -30,19 +30,22 @@ author: DG
 ### 隐藏的小麦制品
 - 酱油/生抽/陈醋
 > 这些会利用面粉作为着色剂
-> ![timg (1).jpeg](https://i.loli.net/2020/10/09/Cn5BGN7WZIYvbQp.jpg)
-> <img src="https://i.loli.net/2020/10/09/Cn5BGN7WZIYvbQp.jpg" style="max-width:500px;min-width:100px;">
+> 
+> <img src="https://i.loli.net/2020/10/09/Cn5BGN7WZIYvbQp.jpg" style="max-width:800px;min-width:100px;">
 
 - 🍺啤酒
 > 啤酒的主要配方中含有麦芽
-> <img src="https://i.loli.net/2020/10/09/aB3OuAIsj4mQZCx.jpg" style="max-width:500px;min-width:100px;">
+>
+> <img src="https://i.loli.net/2020/10/09/aB3OuAIsj4mQZCx.jpg" style="max-width:800px;min-width:100px;">
 
 - 待补充
 ### 血泪史
 1. 五谷鱼粉 (2020.9)
 > 当我天真的以为所有的粉都是大米制品时。。
-> <img src="https://i.loli.net/2020/10/09/8jlnA2Eea15WXZd.jpg" style="max-width:500px;min-width:100px;">
+>
+> <img src="https://i.loli.net/2020/10/09/8jlnA2Eea15WXZd.jpg" style="max-width:800px;min-width:100px;">
 
 2. 西麦有机燕麦片 (2020.10.4-2020.10.9)
 > 当我天真的认为燕麦不含麸质时
-> <img src="https://i.loli.net/2020/10/09/kYvjHbqMC7J9cen.jpg" style="max-width:500px;min-width:100px;">
+>
+> <img src="https://i.loli.net/2020/10/09/kYvjHbqMC7J9cen.jpg" style="max-width:800px;min-width:100px;">
