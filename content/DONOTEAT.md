@@ -17,8 +17,18 @@ author: DG
 - [wikipedia/Non-celiac gluten sensitivity](https://en.wikipedia.org/wiki/Non-celiac_gluten_sensitivity)
 - [wikipedia/Wheat allergy](https://en.wikipedia.org/wiki/Wheat_allergy)
 - [wikipedia/Coeliac disease](https://en.wikipedia.org/wiki/Coeliac_disease)
-## #什么是GFD(gluten-free diet)
-## #不能吃什么
-### 小麦制品
+
+## #什么是GFD(gluten-free diet)/无麸质饮食
+- [百度百科/无麸质饮食](https://baike.baidu.com/item/%E6%97%A0%E9%BA%B8%E8%B4%A8%E9%A5%AE%E9%A3%9F)
+- [wikipedia/Gluten-free diet](https://en.wikipedia.org/wiki/Gluten-free_diet)
+- [中文维基/无麸质饮食]()
+## #不能吃什么😱
+### 小麦及其制品
+- 🤦🏼‍♂️小麦/黑麦/大麦 
+- 🤦🏼‍♂️面条/馒头/包子
+- 🤦🏼‍♂️面包/饼干/各种小零食
 ### 隐藏的小麦制品
+> 酱油/生抽/陈醋
+> 这些会利用面粉作为着色剂
+> ![timg (1).jpeg](https://i.loli.net/2020/10/09/Cn5BGN7WZIYvbQp.jpg)
 ### 我踩过的坑
