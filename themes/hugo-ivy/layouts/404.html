@@ -1,8 +1,9 @@
 <!-- {{ partial "header.html" . }} -->
-<div><a href="/">返回主页</a></div>
+<link href="/css/style.css">
 <div id="page404">
 	<p class="oops404">Oops!</p>
 	<p class="content404">Something went wrong</p>
+	<p>you can back to <a href="/">homepage</a> or search the blogs</p>
 </div>
 <style type="text/css">
 	#page404 {
@@ -49,6 +50,16 @@
 	.search-result-title {
     	font-size: 18px;
 }
+
+#back {
+	font-size: 1em;
+	font-weight: bold;
+}
+#back > a{
+	text-decoration: none;
+	color: black;
+}
+
 </style>
 {{ partial "search.html" }}
 
