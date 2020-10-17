@@ -1,15 +1,26 @@
-{{ partial "header.html" . }}
+<!-- {{ partial "header.html" . }} -->
 
 <div id="page404">
-	<p class="oops">Oops!</p>
-	Something went wrong
+	<p class="oops404">Oops!</p>
+	<p class="content404">Something went wrong</p>
 </div>
 <style type="text/css">
 	#page404 {
-		height: 100px;
-		width: 300px;
+		font-family: 'Lucida Sans', Calibri, Candara, Arial, 'source-han-serif-sc', 'Source Han Serif SC', 'Source Han Serif CN', 'Source Han Serif TC', 'Source Han Serif TW', 'Source Han Serif', 'Songti SC', 'Microsoft YaHei', sans-serif
+	}
+	#page404 {
+		height: auto;
+		width: 100%;
+		text-align: center;
 		margin: 0 auto;
+	}
+	.oops404 {
+		font-size: 5em;
+		font-weight: bold;
+	}
+	.content404 {
+		font-size: 2em;
 	}
 </style>
 
-{{ partial "footer.html" . }}
+<!-- {{ partial "footer.html" . }} -->
