@@ -432,6 +432,7 @@ thead, tfoot, tr:nth-child(even) {
   }
 }
 
+/*local search */
 #site_search {
       margin: 60px 0 30px;
       text-align: left;
