@@ -1,4 +1,4 @@
-cd $HOME/git/blog_file
+cd $HOME/Git/blog_file
 git add --all
 git commit -m "$*"
 git push
