@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>编程 on Muggle L</title>
+    <link>https://blog.mygoooosh.com/tags/%E7%BC%96%E7%A8%8B/</link>
+    <description>Recent content in 编程 on Muggle L</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 05 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.mygoooosh.com/tags/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🦝C-Sharp 笔记</title>
+      <link>https://blog.mygoooosh.com/post/2020/c-sharp-note/</link>
+      <pubDate>Thu, 05 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2020/c-sharp-note/</guid>
+      <description>C# 笔记 第一章 C# 的基本数据类型 C# 代码示例 use system namespace Testtttttt { class ForTest { public static void main() { Console.WriteLine(&amp;#34;Hello world!&amp;#34;); } } } C#的特点   第一条
+  第二点
+  第三点
+  比如
+  比如
+  比如
+    C# 与 Java 的比较    Feature Java C#     继承 👍 👍   封装 👍 👎   多态 👎 👎     参考文献</description>
+    </item>
+    
+    <item>
+      <title>🏹Rust Trait</title>
+      <link>https://blog.mygoooosh.com/post/2020/rust-trait/</link>
+      <pubDate>Sun, 13 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2020/rust-trait/</guid>
+      <description>trait是对类型的行为约束，主要有如下4种用法：
+ 接口抽象。 泛型约束。 抽象类型。 标签 trait。  接口抽象 Rust 的接口有如下特点：
+ 可以自定义方法，支持默认实现。 接口之间可继承不可实现（不可以用一个接口实现另一个接口）。 同一个接口可以被多个类型实现，但不能被一个类型多次实现。 impl 关键字为类型实现接口的方法。 trait 关键字定义接口。  实例1: 为自定义类型实现加法接口
+use std::ops::Add; #[derive(Debug)] struct Point { x: i32, y: i32, } impl Add for Point { type Output = Point; fn add(self, other: Point) -&amp;gt; Self { Point { x: self.x + other.x, y: self.y + other.y, } } } pub fn test() { let point = Point{x: 1, y: 3}; let other = Point{x: 3, y: 2}; let result = point + other; println!</description>
+    </item>
+    
+    <item>
+      <title>🥊SQL 拾遗</title>
+      <link>https://blog.mygoooosh.com/post/2020/sql-tutorial/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2020/sql-tutorial/</guid>
+      <description>大纲
+ MySQL 创建数据库 MySQL 用户管理 MySQL CURD MySQL 事务 MySQL 引擎 其他与补充   Docker 创建数据库
+docker run -d --name=mysql5.7 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=liu12134 mysql:5.7  #mysql 创建数据库 //TODO
+ MYSQL 默认编码与UTF8、UTF8MB4的区别   MySQL 默认编码
+在 MYSQL 8.0 以上 默认编码为 UTF8MB4
+mysql&amp;gt; show variables like &amp;#39;%char%&amp;#39;; +--------------------------+--------------------------------+ | Variable_name | Value | +--------------------------+--------------------------------+ | character_set_client | latin1 | | character_set_connection | latin1 | | character_set_database | utf8mb4 | | character_set_filesystem | binary | | character_set_results | latin1 | | character_set_server | utf8mb4 | | character_set_system | utf8 | | character_sets_dir | /usr/share/mysql-8.</description>
+    </item>
+    
+    <item>
+      <title>🖥️VMware 虚拟机克隆</title>
+      <link>https://blog.mygoooosh.com/post/2020/clone-vm/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2020/clone-vm/</guid>
+      <description>具体步骤为
+  复制虚拟机
+  设置静态 IP
+  Windows Terminal 设置
+复制虚拟机    一定要选择创建完整克隆
+ 修改虚拟机名称以及设置静态 IP 直接克隆虚拟机有可能会出现多个虚拟机同一个 IP 的情况，可以通过配置静态 IP 来解决这个问题。
+通过 ip a 命令（Linux）查看复制之前虚拟机 IP。
+ss@manager131:~$ ip a 1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000 link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00 inet 127.0.0.1/8 scope host lo valid_lft forever preferred_lft forever inet6 ::1/128 scope host valid_lft forever preferred_lft forever 2: ens33: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000 link/ether 00:0c:29:7a:6e:d2 brd ff:ff:ff:ff:ff:ff inet 192.</description>
+    </item>
+    
+    <item>
+      <title>🦉SMM 框架整合</title>
+      <link>https://blog.mygoooosh.com/post/2019/ssm-framework/</link>
+      <pubDate>Fri, 25 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2019/ssm-framework/</guid>
+      <description>xml 模式 1. web.xml 启动spring、springMVC &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;web-app version=&amp;#34;3.0&amp;#34; xmlns=&amp;#34;http://java.sun.com/xml/ns/javaee&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&amp;#34;&amp;gt; &amp;lt;display-name&amp;gt;Archetype Created Web Application&amp;lt;/display-name&amp;gt; &amp;lt;!-- 过滤器 解决中文乱码--&amp;gt; &amp;lt;filter&amp;gt; &amp;lt;filter-name&amp;gt;characterEncodingFilter&amp;lt;/filter-name&amp;gt; &amp;lt;filter-class&amp;gt;org.springframework.web.filter.CharacterEncodingFilter&amp;lt;/filter-class&amp;gt; &amp;lt;init-param&amp;gt; &amp;lt;param-name&amp;gt;encoding&amp;lt;/param-name&amp;gt; &amp;lt;param-value&amp;gt;UTF-8&amp;lt;/param-value&amp;gt; &amp;lt;/init-param&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;filter-mapping&amp;gt; &amp;lt;filter-name&amp;gt;characterEncodingFilter&amp;lt;/filter-name&amp;gt; &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; &amp;lt;/filter-mapping&amp;gt; &amp;lt;!--监听器 启动 Spring--&amp;gt; &amp;lt;listener&amp;gt; &amp;lt;!--加载 spring 默认只加载 WEB-INF 目录下的文件--&amp;gt; &amp;lt;listener-class&amp;gt;org.springframework.web.context.ContextLoaderListener&amp;lt;/listener-class&amp;gt; &amp;lt;/listener&amp;gt; &amp;lt;!-- 设置配置文件路径--&amp;gt; &amp;lt;context-param&amp;gt; &amp;lt;param-name&amp;gt;contextConfigLocation&amp;lt;/param-name&amp;gt; &amp;lt;param-value&amp;gt;classpath:applicationContext.xml&amp;lt;/param-value&amp;gt; &amp;lt;/context-param&amp;gt; &amp;lt;!-- 前端控制器 启动 SpringMVC--&amp;gt; &amp;lt;servlet&amp;gt; &amp;lt;servlet-name&amp;gt;dispatcherServlet&amp;lt;/servlet-name&amp;gt; &amp;lt;servlet-class&amp;gt;org.springframework.web.servlet.DispatcherServlet&amp;lt;/servlet-class&amp;gt; &amp;lt;!-- 加载 springMVC 配置文件--&amp;gt; &amp;lt;init-param&amp;gt; &amp;lt;param-name&amp;gt;contextConfigLocation&amp;lt;/param-name&amp;gt; &amp;lt;param-value&amp;gt;classpath:springMVC.xml&amp;lt;/param-value&amp;gt; &amp;lt;/init-param&amp;gt; &amp;lt;!--启动服务器创建该 servlet--&amp;gt; &amp;lt;load-on-startup&amp;gt;1&amp;lt;/load-on-startup&amp;gt; &amp;lt;/servlet&amp;gt; &amp;lt;servlet-mapping&amp;gt; &amp;lt;servlet-name&amp;gt;dispatcherServlet&amp;lt;/servlet-name&amp;gt; &amp;lt;url-pattern&amp;gt;/&amp;lt;/url-pattern&amp;gt; &amp;lt;/servlet-mapping&amp;gt; &amp;lt;!</description>
+    </item>
+    
+    <item>
+      <title>📦⚓️Manjaro Docker 用法</title>
+      <link>https://blog.mygoooosh.com/note/2019/08/23/tutorial-of-manjaro-docker/</link>
+      <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/note/2019/08/23/tutorial-of-manjaro-docker/</guid>
+      <description>不同发行版的指令，文件位置略有不同，本文仅以 arch 及其衍生系统为准。
+目录  安装 设置镜像仓库 设置代理 基础命令 Dockerfile Dockerfile 多段构建 容器的操作 数据管理 网络  安装 sudo pacman -Syy sudo pacman -S docker # 启动 sudo systemctl start docker # 用户加入 docker 用户组（可以不用 sudo 启动docker) sudo usermod -aG docker $USER # 注销重新登录 设置镜像仓库 echo &amp;#39;{ &amp;#34;registry-mirrors&amp;#34;: [ &amp;#34;https://dockerhub.azk8s.cn&amp;#34;, # 国内镜像仓库1 &amp;#34;https://reg-mirror.qiniu.com&amp;#34; # 仓库2 ] }&amp;#39; | sudo tee -a /etc/docker/daemon.json &amp;gt; /dev/null # 重启服务 sudo systemctl daemon-reload sudo systemctl restart docker  通过 docker info 可以看到仓库设置情况。</description>
+    </item>
+    
+    <item>
+      <title>📈数据库连接的图表展示</title>
+      <link>https://blog.mygoooosh.com/note/2019/06/18/sql-join-illustrates/</link>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/note/2019/06/18/sql-join-illustrates/</guid>
+      <description>图片来源 http://www.postgresqltutorial.com
+inner join left join where left is null
+right join right is null
+full join right is null of left is null
+cross join summary </description>
+    </item>
+    
+    <item>
+      <title>🐬golang 使用 socks5 代理</title>
+      <link>https://blog.mygoooosh.com/note/2019/05/21/golang-use-socks5-proxy/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/note/2019/05/21/golang-use-socks5-proxy/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;log&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;os&amp;#34; &amp;#34;golang.org/x/net/proxy&amp;#34; ) func main() { // create a socks5 dialer  dialer, err := proxy.SOCKS5(&amp;#34;tcp&amp;#34;, &amp;#34;127.0.0.1:1080&amp;#34;, nil, proxy.Direct) if err != nil { _, _ = fmt.Fprintln(os.Stderr, &amp;#34;can&amp;#39;t connect to the proxy:&amp;#34;, err) os.Exit(1) } // setup a http client  httpTransport := &amp;amp;http.Transport{} httpClient := &amp;amp;http.Client{Transport: httpTransport} // set our socks5 as the dialer  httpTransport.Dial = dialer.Dial if resp, err := httpClient.</description>
+    </item>
+    
+    <item>
+      <title>🧍‍♀️JavaScript 对象</title>
+      <link>https://blog.mygoooosh.com/post/2019/js-object/</link>
+      <pubDate>Sun, 24 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2019/js-object/</guid>
+      <description>本文记录了 JavaScript 面对对象的一些基础方法，如对象的属性，对象的遍历，对象的复制与合并等。
+多词属性 可以用多字词语来作为属性名
+let person = { name: &amp;#39;John&amp;#39;, age: 20, &amp;#39;likes birds&amp;#39;: true //必须加引号 }; 多词属性不适用于点操作，但可以用方括号
+person.likes birds; //错误 person[&amp;#39;likes birds&amp;#39;]; //true  let key = &amp;#39;likes birds&amp;#39;; person[key] //true delete 删除属性 delete + 属性 可以删除属性
+delete person.age //age 被删除 delete person[&amp;#39;like birds&amp;#39;] //删除多词属性 计算属性 在方括号中的属性
+let fruit = prompt(&amp;#34;whitch fruit to buy?&amp;#34;); let bag = { [fruit]: 5, }; //假如输入 apple bag.apple //值为 5 它的本质其实是：
+let fruit = prompt(&amp;#34;whitch fruit to buy?</description>
+    </item>
+    
+    <item>
+      <title>🚌JavaScript 基础</title>
+      <link>https://blog.mygoooosh.com/post/2019/js-foundation/</link>
+      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2019/js-foundation/</guid>
+      <description>&lt;p&gt;JavaScript 是一门坑比较多的语言。这里记录了一些基本数据类型里面不容易注意到的点，比如：字符串的表示方式、基本数据类型的比较等等。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>☕️由反射引起的 Java 常量名与变量名的思考</title>
+      <link>https://blog.mygoooosh.com/note/2019/02/26/java-reflect/</link>
+      <pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/note/2019/02/26/java-reflect/</guid>
+      <description>0x00 前几天，一个同学问我关于反射的问题。我对 Java 反射了解并不多，照着他给的例子做实验的时候发现了一个让我摸不着头脑的问题。代码如下：
+public class demo { public static void change(Integer a, Integer b) throws NoSuchFieldException, IllegalAccessException { Field field = Integer.class.getDeclaredField(&amp;#34;value&amp;#34;); field.setAccessible(true); field.set(b, 10); field.set(a, 1); } public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException { Integer a = 10, b = 1; change(a, b); System.out.println(&amp;#34;a = &amp;#34; + a + &amp;#34; b = &amp;#34; + b); } } 这本来就是很平常的改变两个变量的值，但是结果如下
+WTF?? b 是 10 没错 a 怎么变成 10 了。</description>
+    </item>
+    
+    <item>
+      <title>✏️c&#43;&#43;中的get与getline</title>
+      <link>https://blog.mygoooosh.com/post/2018/cpp-get-getline/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2018/cpp-get-getline/</guid>
+      <description>c++ 中的cin c++中的cin以空白符（空格 回车 制表）作为分隔符，以回车作为输入结束符。在平时使用中除了输入数字，否则很难避免输入的内容包含空格等特殊字符的情况。
+char name1[20]; char name2[20]; cin&amp;gt;&amp;gt;name1&amp;gt;&amp;gt;name2; cout&amp;lt;&amp;lt;name1&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;name2&amp;lt;&amp;lt;endl; 如果输入barack obama，再按回车。程序直接输出
+barack obama 在此次输入中，把barack赋值给了name1，把obama赋值给了name2；（此时最后输入的回车符任保存在缓存中）。
+cin.getline 好在c++给了一个解决这个问题的方法。在cin的成员函数中，有一个以回车为分隔符的函数getline()。
+getline()因为是cin的成员函数。所以使用方法为cin.getline()。他有（一般）两个参数，第一个为接收这行字符串的数组的名称，第二个为读取的字符数。
+getline()读取某行字符时，会接收最后的回车符，然后把回车符丢弃换成空字符串&#39;\0&#39;，所以如果getline的第二个参数为20，他最多能接收19个字符。
+char name1[20]; char name2[20]; cin.getline(name1,20); cin.getline(name2,20); cin.get 与此同时，c++也给出了get()，与getline()不同的是，get不会接收最后的回车符（参数与getline一样）。
+char name1[20]; char name2[20]; cin.get(name1,20); cin.get(name2,20); cout&amp;lt;&amp;lt;name1&amp;lt;&amp;lt;name2; 输入barack obama，回车。输出的将是：
+barack obama 因为第一个get函数完成后，&#39;\n&#39;被留在了缓存中，当执行第二个get时，程序从缓存中读到了一个\n，所以第二个get没有接收到任何参数就结束了。
+为了解决这个问题，get还有一个不带参数的形式，这时只能接收一个字符，所以可以通过下面这种方式，把最后的回车用get丢弃。
+char name1[20]; char name2[20]; cin.get(name1,20).get(); cin.get(name2,20).get(); 如果你想保存那个字符，你可以 char a = cin.get();。或者使用get的第三种形式char a; cin.get(a);。
+在第一节中说到。cin以回车为输入结束，输入结束后，回车依然留在缓存中。如果你在cin后面紧接着来一个cin.get(string&amp;amp;amp;,int)，你的get可能接收不到任何参数。
+所以像上面一样，在cin完之后，应该用一个不带参数的get把回车接收并丢弃掉。
+char name1[20],name2[20],a[20]; cin&amp;gt;&amp;gt;a; //or (cin&amp;gt;&amp;gt;a).get();从而不要下面那句。  cin.get() //or char ch; cin.get(ch); 上面之所以能够cin.get(string&amp;amp;amp;,int).get()或(cin&amp;amp;gt;&amp;amp;gt;a).get()，是因为cin在有参数的情况下，返回的是一个cin对象（cin.get()在没有参数的情况下，返回的是接收的字符）。
+get与getline 如此看来，貌似getline使用起来比get更加方便，那么get存在的意义是什么？</description>
+    </item>
+    
+  </channel>
+</rss>

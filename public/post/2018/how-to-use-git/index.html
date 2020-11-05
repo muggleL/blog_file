@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>🍎git的使用方法记录。 - Muggle L</title>
+    <meta property="og:title" content="🍎git的使用方法记录。 - Muggle L">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="$ sudo pacman -S git 安装完之后设置用户和邮箱
+[&amp;hellip;] $ git config --global user.name &amp;#34;Your Name&amp;#34; $ git config --global user.email &amp;#34;email@example.com&amp;#34; 以上的 --global指定了, 本系统所有的仓库都会使用这个配置。 &amp;hellip;">
+      <meta property="og:description" content="$ sudo pacman -S git 安装完之后设置用户和邮箱
+[&amp;hellip;] $ git config --global user.name &amp;#34;Your Name&amp;#34; $ git config --global user.email &amp;#34;email@example.com&amp;#34; 以上的 --global指定了, 本系统所有的仓库都会使用这个配置。 &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/agate.min.css' rel='stylesheet' type='text/css' />
+
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="https://blog.mygoooosh.com/post/2018/how-to-use-git/">
+    <header class="masthead">
+      <h1><a href="/">Muggle L</a></h1>
+
+<p class="tagline">Technology Is Muggle&#39;s Magic</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">Home</a></li>
+  
+  <li><a href="/search/">Search</a></li>
+  
+  <li><a href="/categories/">Categories</a></li>
+  
+  <li><a href="/tags/">Tags</a></li>
+  
+  <li><a href="/pdfs/">Pdfs</a></li>
+  
+  <li><a href="/slice/">Slice</a></li>
+  
+  <li><a href="https://git.mygoooosh.com/explore/repos">MyGoooosh Git</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+
+
+<h1>🍎git的使用方法记录。</h1>
+
+<h3>DG
+  /  2018-01-31</h3>
+<hr>
+
+
+
+      </header>
+
+
+
+
+
+
+<h2 id="安装linux">安装（Linux）</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo pacman -S git
+</code></pre></div><p>安装完之后设置用户和邮箱</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git config --global user.name <span style="color:#e6db74">&#34;Your Name&#34;</span>
+$ git config --global user.email <span style="color:#e6db74">&#34;email@example.com&#34;</span>
+</code></pre></div><p>以上的 <code>--global</code>指定了, 本系统所有的仓库都会使用这个配置。</p>
+<h2 id="新建一个版本库">新建一个版本库</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir mygit
+$ cd mygit
+$ git init
+</code></pre></div><h2 id="添加文件">添加文件</h2>
+<p><em>假如你在本目录下添加了一个叫<code>readme.txt</code>的文件</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add readme.txt
+$ git commit -m <span style="color:#e6db74">&#34;add readme.txt&#34;</span>
+</code></pre></div><p><code>commit -m</code>后面的参数为此次修改的提交说明.</p>
+<h2 id="提交修改后的文件">提交修改后的文件</h2>
+<h3 id="查看状态">查看状态</h3>
+<p>如果你修改了<code>redme.txt</code>运行<code>git status</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git status
+On branch master
+Changes not staged <span style="color:#66d9ef">for</span> commit:
+<span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add &amp;lt;file&amp;gt;...&#34;</span> to update what will be committed<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git checkout -- &amp;lt;file&amp;gt;...&#34;</span> to discard changes in working directory<span style="color:#f92672">)</span>
+
+modified:   readme.txt
+
+no changes added to commit <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add&#34;</span> and/or <span style="color:#e6db74">&#34;git commit -a&#34;</span><span style="color:#f92672">)</span>
+</code></pre></div><p>它告诉你, <code>redme.txt</code>已经被修改过了, 但是还没有准备提交的修改.</p>
+<h3 id="比较修改前和修改后的不同">比较修改前和修改后的不同</h3>
+<p>如果你已经忘记了你修改的内容, 运行<code>git diff</code>比较不同.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git diff readme.txt
+diff --git a/readme.txt b/readme.txt
+index c4990a0..4cd0f41 <span style="color:#ae81ff">100644</span>
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,2 +1,2 @@
+ Git is a distributed version control system.
+ -Git is free software distributed ubder the GPL.
+ +Git is free software distributed ubder the f.
+</code></pre></div><p>可以看到, 我把<code>Git is free software distributed ubder the GPL.</code>换成了<code>Git is free software distributed ubder the f.</code>.</p>
+<h3 id="提交修改">提交修改</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add reame.txt
+$ git commit -m <span style="color:#e6db74">&#34;change GPL to f&#34;</span>
+</code></pre></div><h2 id="版本退回">版本退回</h2>
+<h3 id="查询修改记录">查询修改记录</h3>
+<p>通过<code>git log</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git log
+commit eea876296f438267c5a2983b2f31792067558b40 <span style="color:#f92672">(</span>HEAD -&amp;gt; master<span style="color:#f92672">)</span>
+Author: ffshine &amp;lt;ffshine9@gmail.com&amp;gt;
+Date:   Wed Jan <span style="color:#ae81ff">31</span> 20:17:13 <span style="color:#ae81ff">2018</span> +0800
+
+
+    change GPL to f
+
+commit 4c7884d8021d9b333651c11eb9746d2ada23cf4a
+Author: ffshine &amp;lt;ffshine9@gmail.com&amp;gt;
+Date:   Wed Jan <span style="color:#ae81ff">31</span> 19:29:55 <span style="color:#ae81ff">2018</span> +0800
+
+    add GPL
+
+commit d79a6a5e90fa4ef7d2a1fb2c788b98307f411311
+Author: ffshine &amp;lt;ffshine9@gmail.com&amp;gt;
+Date:   Wed Jan <span style="color:#ae81ff">31</span> 19:28:25 <span style="color:#ae81ff">2018</span> +0800
+
+    add distributed
+
+commit 340d6f6d36da7f551db7ca6e78e529088732f21d
+Author: ffshine &amp;lt;ffshine9@gmail.com&amp;gt;
+Date:   Wed Jan <span style="color:#ae81ff">31</span> 19:25:17 <span style="color:#ae81ff">2018</span> +0800
+
+    wrote a readme file
+</code></pre></div><p>如果记录过多不好查阅的话, 添加<code>--pretty=oneline</code>参数, 所有的log都会在一行显示出来.</p>
+<h3 id="回滚">回滚</h3>
+<p>在git中,有个<code>HEAD</code>指针, 它指向当前的记录,<code>HEAD^</code>指向前一个记录,<code>HEAD^^</code>再往前一个, 以此类推. 当然,前一百个不会让你写一百个^,你可以这样写<code>HEAD~100</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git raset --hard HEAD^
+</code></pre></div><h3 id="后悔了">后悔了</h3>
+<p>回滚了后悔了怎么办, git每条修改记录创建时, 都会有一个对应的ID. 比如说, 上一条我运行<code>git commit -m &quot;change GPL to f&quot;</code>后, 返回的是:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>master eea8762<span style="color:#f92672">]</span> change GPL to f
+</code></pre></div><p>如果要回到这一条记录, 只需要运行:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git reset --hard eea8762
+</code></pre></div><p>但是,如果回滚之后, 关闭了窗口, 找不到这条记录了怎么办. 没关系, git已经悄悄记录了你执行的每一条命令,只需要通过<code>git reflog</code>就能查询出来.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git reflog
+    eea8762 <span style="color:#f92672">(</span>HEAD -&amp;gt; master<span style="color:#f92672">)</span> HEAD@<span style="color:#f92672">{</span>0<span style="color:#f92672">}</span>: commit: change GPL to f
+    4c7884d HEAD@<span style="color:#f92672">{</span>1<span style="color:#f92672">}</span>: reset: moving to 4c7884d
+    d79a6a5 HEAD@<span style="color:#f92672">{</span>2<span style="color:#f92672">}</span>: reset: moving to HEAD^
+    4c7884d HEAD@<span style="color:#f92672">{</span>3<span style="color:#f92672">}</span>: commit: add GPL
+    d79a6a5 HEAD@<span style="color:#f92672">{</span>4<span style="color:#f92672">}</span>: commit: add distributed
+    340d6f6 HEAD@<span style="color:#f92672">{</span>5<span style="color:#f92672">}</span>: commit <span style="color:#f92672">(</span>initial<span style="color:#f92672">)</span>: wrote a readme file
+</code></pre></div><blockquote>
+<p style="color:red">Update: 2020/11/06</p>
+</blockquote>
+<h2 id="分支">分支</h2>
+<h3 id="创建分支">创建分支</h3>
+<p>待续&hellip;</p>
+
+<br>
+<footer>
+    
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2018/cpp-get-getline/">✏️c&#43;&#43;中的get与getline</a></span>
+  <span class="nav-next"><a href="/post/2019/js-foundation/">🚌JavaScript 基础</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="/js/math-code.js"></script>
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+     
+    color: #EE7700;
+}
+</style>
+<script async src="/js/center-img.js"></script>
+
+    
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/yaml.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/tex.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/go.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/powershell.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/sql.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/bash.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/rust.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c#.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/java.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/cpp.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+   
+   <br>
+   <span id="/post/2018/how-to-use-git/" class="leancloud_visitors" data-flag-title="🍎git的使用方法记录。">
+     
+     <p></p>
+   </span>
+   <div id="vcomments"></div>
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+     new Valine({
+         el: '#vcomments' ,
+         appId: 'ipR0UGBwhzhpRfzhlNwHl4rR-MdYXbMMI',
+         appKey: 'inbruR2BGaSxMmHIeFO4S0Rv',
+         notify:  false , 
+         verify:  false , 
+         avatar:'monsterid', 
+         placeholder: '说点什么呗~',
+         visitor:  false 
+     });
+   </script>
+
+
+
+  <hr>
+  <div class="copyright">© <a href="https://blog.mygoooosh.com">DG</a> Since 2016 | <a href="https://github.com/muggleL">Github</a> | <a href="https://twitter.com/Modu_Chanyu6">Twitter</a> | Theme By <a href="https://yihui.name">Yihui Xie</a> | <a href="/index.xml">RSS</a> Feed</div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+   

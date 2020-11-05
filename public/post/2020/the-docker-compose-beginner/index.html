@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>⚓👹从 Ghost 入门 docker-compose - Muggle L</title>
+    <meta property="og:title" content="⚓👹从 Ghost 入门 docker-compose - Muggle L">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="如果按照平常的方法通过 docker 启动 ghost，需要运行如下一串超长的命令：
+[&amp;hellip;] docker run -d --name myghost -p 80:2368 -v /var/ghost/blog:/var/lib/ghost/content ghost 这种方法比较复杂，可配置空间小。
+[&amp;hellip;] docker-compose 是 docker 官方的开源项 &amp;hellip;">
+      <meta property="og:description" content="如果按照平常的方法通过 docker 启动 ghost，需要运行如下一串超长的命令：
+[&amp;hellip;] docker run -d --name myghost -p 80:2368 -v /var/ghost/blog:/var/lib/ghost/content ghost 这种方法比较复杂，可配置空间小。
+[&amp;hellip;] docker-compose 是 docker 官方的开源项 &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/agate.min.css' rel='stylesheet' type='text/css' />
+
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="https://blog.mygoooosh.com/post/2020/the-docker-compose-beginner/">
+    <header class="masthead">
+      <h1><a href="/">Muggle L</a></h1>
+
+<p class="tagline">Technology Is Muggle&#39;s Magic</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">Home</a></li>
+  
+  <li><a href="/search/">Search</a></li>
+  
+  <li><a href="/categories/">Categories</a></li>
+  
+  <li><a href="/tags/">Tags</a></li>
+  
+  <li><a href="/pdfs/">Pdfs</a></li>
+  
+  <li><a href="/slice/">Slice</a></li>
+  
+  <li><a href="https://git.mygoooosh.com/explore/repos">MyGoooosh Git</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+
+
+<h1>⚓👹从 Ghost 入门 docker-compose</h1>
+
+<h3>
+  2020-08-01</h3>
+<hr>
+
+
+
+      </header>
+
+
+
+
+
+
+<p>如果按照平常的方法通过 docker 启动 ghost，需要运行如下一串超长的命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -d --name myghost -p 80:2368 -v /var/ghost/blog:/var/lib/ghost/content ghost
+</code></pre></div><p>这种方法比较复杂，可配置空间小。</p>
+<blockquote>
+<h3 id="关于-docker-compose">关于 docker-compose</h3>
+<p>docker-compose 是 docker 官方的开源项目，使用 python 编写，实现上调用了 Docker 服务的 API 进行容器管理。其官方定义为为 「定义和运行多个 Docker 容器的应用（Defining and running multi-container Docker applications）。</p>
+</blockquote>
+<h1 id="安装docker-compose">安装Docker-compose</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip3 install -i https://pypi.douban.com/simple docker-compose
+</code></pre></div><h1 id="使用">使用</h1>
+<ol>
+<li>创建一个项目文件夹</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir ghost-docker
+</code></pre></div><ol start="2">
+<li>创建 docker-compose.yml</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ghost-docker <span style="color:#f92672">&amp;&amp;</span> touch docker-compose.yml
+</code></pre></div><p>写入以下内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+
+<span style="color:#f92672">services</span>:
+   <span style="color:#f92672">ghost</span>:
+      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ghost:latest</span>
+      <span style="color:#f92672">ports</span>:
+        - <span style="color:#ae81ff">9030</span>:<span style="color:#ae81ff">2368</span>
+      <span style="color:#f92672">volumes</span>:
+        - <span style="color:#ae81ff">./data:/var/lib/ghost/content</span>
+      <span style="color:#f92672">enviroment</span>:
+        - <span style="color:#ae81ff">url=http://o0o0o0.de</span>
+      <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+</code></pre></div><p>文件中使用了本目录下的 data 文件夹，所以需要生成该文件夹</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir data
+</code></pre></div><ol start="3">
+<li>
+<p>容器管理</p>
+<p>启动容器</p>
+</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">   docker-compose up -d <span style="color:#75715e"># -d 参数忽略输出</span>
+</code></pre></div><p>停止容器</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">   docker-compose stop
+</code></pre></div><p>删除容器</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">   docker-compose rm
+</code></pre></div><blockquote>
+<p>这些命令必须要在 docker-compose.yml 同一目录下执行</p>
+</blockquote>
+<h1 id="从-build-开始构建-docker-容器">从 build 开始构建 docker 容器</h1>
+<h2 id="例1-构建简单-go-应用">例1 构建简单 go 应用</h2>
+<p><code>ghost</code> 的例子中，<code>docker-compose.yml</code> 指定了 <code>image</code> 镜像，也可以从一个 <code>Dockfile</code> 开始构建一个容器。本例子使用 <a href="%5Bhttps://blog.degen.run/note/2019/08/23/manjaro-docker/#dockerfile-%E5%A4%9A%E6%AE%B5%E6%9E%84%E5%BB%BA%5D(https://blog.degen.run/note/2019/08/23/manjaro-docker/#dockerfile-%E5%A4%9A%E6%AE%B5%E6%9E%84%E5%BB%BA)">Manjaro Docker 用法</a> 中使用的 <code>Dockerfile</code>。</p>
+<p>先看以下 <code>Dockerfile</code> 内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#75715e"># 分段 1</span>
+    FROM golang:1.12-alpine as builder
+    <span style="color:#75715e"># 配置国内源 以及安装 git</span>
+    RUN sed -i <span style="color:#e6db74">&#39;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&#39;</span> /etc/apk/repositories <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        <span style="color:#f92672">&amp;&amp;</span> apk --no-cache add git
+    <span style="color:#75715e"># 工作目录</span>
+    WORKDIR /go/src/github.com/go/helloworld/
+    
+    COPY app.go .
+    <span style="color:#75715e"># 编译</span>
+    RUN CGO_ENABLED<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> GOOS<span style="color:#f92672">=</span>linux go build -a -installsuffix cgo -o app .
+    
+    <span style="color:#75715e"># 分段 2</span>
+    FROM alpine:latest as prod
+    <span style="color:#75715e"># 源和基本环境</span>
+    RUN sed -i <span style="color:#e6db74">&#39;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&#39;</span> /etc/apk/repositories <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        <span style="color:#f92672">&amp;&amp;</span> apk --no-cache add ca-certificates
+    <span style="color:#75715e"># 工作目录</span>
+    WORKDIR /root
+    <span style="color:#75715e"># 从上一层拷贝文件</span>
+    COPY --from<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> /go/src/github.com/go/helloworld/app .
+    <span style="color:#75715e"># 执行</span>
+    CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;./app&#34;</span><span style="color:#f92672">]</span>
+</code></pre></div><p>app.go 文件内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;THE APP IS RUNNING&#34;</span>)
+}
+</code></pre></div><p>docker-compose</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 这个项目没有什么端口之类的依赖关系，所以及其简单</span>
+version: <span style="color:#e6db74">&#39;3&#39;</span>
+
+services:
+        myapp:
+                build: .
+</code></pre></div><h2 id="例2使用-docker-compose-构建一个-php-应用">例2：使用 Docker-compose 构建一个 php 应用</h2>
+<p>myphp.dockerfile 内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">FROM php:7.1.22-fpm
+
+<span style="color:#75715e"># 安装依赖</span>
+run apt-get update <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>	<span style="color:#f92672">&amp;&amp;</span> apt-get install -qq git curl libmcrypt-dev libjpeg-dev libfreetype6-dev libbz2-dev <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>	<span style="color:#f92672">&amp;&amp;</span> apt-get clean
+
+<span style="color:#75715e"># 安装 php 扩展</span>
+RUN docker-php-ext-install pdo pdo_mysql mcrypt zip gd
+</code></pre></div><p>nginx.dockerfile</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">FROM nginx:1.10
+ADD vhost.conf /etc/nginx/conf.d/default.conf
+</code></pre></div><p>niginx 配置文件 vhost.conf</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">server {
+    listen <span style="color:#ae81ff">80</span>;
+    server_name www.o0o0o0.de;
+    index index.php index.html;
+    root <span style="color:#f92672">/</span>var<span style="color:#f92672">/</span>www<span style="color:#f92672">/</span>public;
+
+    error_log <span style="color:#f92672">/</span>var<span style="color:#f92672">/</span>log<span style="color:#f92672">/</span>nginx<span style="color:#f92672">/</span>error.log notice;
+    access_log <span style="color:#f92672">/</span>var<span style="color:#f92672">/</span>log<span style="color:#f92672">/</span>nginx<span style="color:#f92672">/</span>access.log main;
+
+    location <span style="color:#f92672">/</span> {
+        try_files <span style="color:#960050;background-color:#1e0010">$</span>uri <span style="color:#f92672">/</span>index.php<span style="color:#f92672">?</span><span style="color:#960050;background-color:#1e0010">$</span>args;
+    }
+    location <span style="color:#f92672">~</span> <span style="color:#960050;background-color:#1e0010">\</span>.php<span style="color:#960050;background-color:#1e0010">$</span> {
+        fastcgi_split_path_info <span style="color:#f92672">^</span>(.<span style="color:#f92672">+</span><span style="color:#960050;background-color:#1e0010">\</span>.php)(<span style="color:#f92672">/</span>.<span style="color:#f92672">+</span>)<span style="color:#960050;background-color:#1e0010">$</span>;
+        fastcgi_pass myphp:<span style="color:#ae81ff">9000</span>; <span style="color:#75715e">// 动态请求转发给 myphp 容器的 9000 端口 docker-compose 同一项目下的容器默认在同一网络中，无需映射可以直接访问
+</span><span style="color:#75715e"></span>        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME <span style="color:#960050;background-color:#1e0010">$</span>document_root<span style="color:#960050;background-color:#1e0010">$</span>fastcgi_script_name;
+        fastcgi_param PATH_INFO <span style="color:#960050;background-color:#1e0010">$</span>fastcgi_path_info;
+    }
+}
+</code></pre></div><p>docker-compose.yml</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+
+<span style="color:#f92672">services</span>:
+        <span style="color:#f92672">myphp</span>:
+                <span style="color:#f92672">build</span>:
+                        <span style="color:#f92672">context</span>: <span style="color:#ae81ff">./</span>
+                        <span style="color:#f92672">dockerfile</span>: <span style="color:#ae81ff">myphp.dockerfile</span>
+                <span style="color:#f92672">volumes</span>:
+                        - <span style="color:#ae81ff">./:/var/www</span>
+                <span style="color:#f92672">working_dir</span>: <span style="color:#ae81ff">/var/www</span>
+                <span style="color:#f92672">environment</span>:
+                        - <span style="color:#ae81ff">DBHOST=database</span>
+                        - <span style="color:#ae81ff">REDIS_HOST=redis</span>
+
+        <span style="color:#f92672">composer</span>: <span style="color:#75715e"># 这是一个 php 依赖管理容器</span>
+                 <span style="color:#f92672">image</span>: <span style="color:#ae81ff">prooph/composer:7.1</span>
+                 <span style="color:#f92672">volumes</span>:
+                         - <span style="color:#ae81ff">./:/var/www</span>
+                 <span style="color:#f92672">working_dir</span>: <span style="color:#ae81ff">/var/www</span>
+                 <span style="color:#f92672">command</span>: <span style="color:#ae81ff">install</span>
+
+        <span style="color:#f92672">nginx</span>:
+                <span style="color:#f92672">build</span>:
+                        <span style="color:#f92672">context</span>: <span style="color:#ae81ff">./</span>
+                        <span style="color:#f92672">dockerfile</span>: <span style="color:#ae81ff">nginx.dockerfile</span>
+                <span style="color:#f92672">volumes</span>:
+                        - <span style="color:#ae81ff">./public:/var/www/public</span>
+                <span style="color:#f92672">ports</span>:
+                        - <span style="color:#ae81ff">80</span>:<span style="color:#ae81ff">80</span>
+
+        <span style="color:#f92672">database</span>:
+                <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mysql:5.7</span>
+                <span style="color:#f92672">environment</span>:
+                        - <span style="color:#e6db74">&#34;MYSQL_ROOT_PASSWORD=root&#34;</span>
+                        - <span style="color:#e6db74">&#34;MYSQL_DATABASE=test&#34;</span>
+                        - <span style="color:#e6db74">&#34;MYSQL_USER=ss&#34;</span>
+                        - <span style="color:#e6db74">&#34;MYSQL_PASSWORD=123456789&#34;</span>
+        <span style="color:#f92672">redis</span>:
+                <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:5</span>
+</code></pre></div><blockquote>
+<p>待续</p>
+</blockquote>
+
+<br>
+<footer>
+    
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2020/wsl2-ubuntu20.04-install-docker/">🐜Wsl2 Ubuntu20.04 配置 docker</a></span>
+  <span class="nav-next"><a href="/post/2020/docker-swarm/">⚓️🐛Docker Swarm</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="/js/math-code.js"></script>
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+     
+    color: #EE7700;
+}
+</style>
+<script async src="/js/center-img.js"></script>
+
+    
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/yaml.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/tex.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/go.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/powershell.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/sql.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/bash.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/rust.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c#.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/java.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/cpp.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+   
+   <br>
+   <span id="/post/2020/the-docker-compose-beginner/" class="leancloud_visitors" data-flag-title="⚓👹从 Ghost 入门 docker-compose">
+     
+     <p></p>
+   </span>
+   <div id="vcomments"></div>
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+     new Valine({
+         el: '#vcomments' ,
+         appId: 'ipR0UGBwhzhpRfzhlNwHl4rR-MdYXbMMI',
+         appKey: 'inbruR2BGaSxMmHIeFO4S0Rv',
+         notify:  false , 
+         verify:  false , 
+         avatar:'monsterid', 
+         placeholder: '说点什么呗~',
+         visitor:  false 
+     });
+   </script>
+
+
+
+  <hr>
+  <div class="copyright">© <a href="https://blog.mygoooosh.com">DG</a> Since 2016 | <a href="https://github.com/muggleL">Github</a> | <a href="https://twitter.com/Modu_Chanyu6">Twitter</a> | Theme By <a href="https://yihui.name">Yihui Xie</a> | <a href="/index.xml">RSS</a> Feed</div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+   

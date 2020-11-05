@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Muggle L</title>
+    <link>https://blog.mygoooosh.com/categories/linux/</link>
+    <description>Recent content in Linux on Muggle L</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 27 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.mygoooosh.com/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>✏️Linux 定时任务一定要用绝对路径</title>
+      <link>https://blog.mygoooosh.com/daily/2019/05/27/linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%80%E5%AE%9A%E8%A6%81%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/</link>
+      <pubDate>Mon, 27 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/daily/2019/05/27/linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%80%E5%AE%9A%E8%A6%81%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/</guid>
+      <description>重要的事情说三遍 Linux 用 crontab 定时任务一定要用绝对路径。
+Linux 用 crontab 定时任务一定要用绝对路径。
+Linux 用 crontab 定时任务一定要用绝对路径。
+ 　crontab 执行命令时，默认用户是 root，默认文件夹是 /root。脚本一定要用绝对路径，默认~ 路径是 /root。这个问题坑了我一个礼拜。
+  2019-8-10 更新
+ crontab -u user 如果不指定 user , 则默认为当前用户。上文中我使用了 sudo 启动才会出现默认用户是 root 的情况。
+ </description>
+    </item>
+    
+    <item>
+      <title>💻linux 开机出现grub rescue的恢复方法</title>
+      <link>https://blog.mygoooosh.com/post/2017/linux-grub-rescue/</link>
+      <pubDate>Thu, 19 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2017/linux-grub-rescue/</guid>
+      <description>昨天，微软推送了win10的秋季大更新，我也及时接收了。但在更新重启时，正常的grub引导界面进不去了。屏幕上只出现
+grub rescue &amp;gt; 根据百度的方法
+grub rescue &amp;gt; lsgrub rescue &amp;gt; (hd0),(hd0,gpt5),(hd0,gpt4),(hd0,gpt3),(hd0,gpt2),(hd0,gpt1),(hd1)(....) 我明明记得第一个硬盘只有四个分区（efi，windows保留分区，win10系统分区，manjaro系统分区），这会儿怎么出现五个，应该是微软搞的鬼。接下来弄清楚grub到底在那个分区。
+执行
+grub rescue &amp;gt; ls (hd0,gpt5)/boot/grubgrub rescue &amp;gt; .....如果系统在gtp5的话，它会列出对应的文件，如果不在就会报错。一个一个试。
+grub rescue &amp;gt; set root=(hd0,gpt5)grub rescue &amp;gt; set prefix=(hd0,gpt5)/boot/grubgrub rescue &amp;gt; insmod normalgrub rescue &amp;gt; normal这时候应该能启动到熟悉的grub引导界面，但此时并没有完全修复，应该启动linux
+执行以下命令，重新生成grub就可以了。
+sudo update-grubsudo grub-install /dev/sdasudo reboot还有一种思路，启动不了不就是因为从磁盘的第四个分区变成了第五个吗，我把第四个分区删掉不就恢复了吗？ 所以，可以进入pe，把没什么用的第四个分区删掉，再扩展到第三个分区，这时重启就恢复原样了。
+ 参考：grub rescue模式下修复
+ </description>
+    </item>
+    
+    <item>
+      <title>🔗linux连接校园网的暂时解决方法</title>
+      <link>https://blog.mygoooosh.com/post/2017/2017-10-17-linux-network/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2017/2017-10-17-linux-network/</guid>
+      <description>对于天朝各大群体的网络环境，我不想做过多评论。我只在此记录我遇到问题的解决及方法。 一般要客户端验证的校园网都与Linux无缘。就算有第三方大神开发出linux端的拨号工具，也抵挡不住多久就会因为运营商的升级而生效。比如我以前用的netkeeper的linux版openkeeper也在电信最近一次升级中失效。最近，无意中发现一种能够解决这个问题的方法，只要你手机能连WiFi，linux就一定能连。网上搜了一下，没有发现类似资料。大概算是本人原创吧。
+材料:  安卓手机一部 数据线一根  步骤 1. 手机连接校园网，并拨号，（按照平时用手机一样，当然流量多的可以无视) 2. 2. 用数据线连接linux 3. 3. 打开手机的USB网络共享 MIUI： 设置&amp;raquo;更多连接方式&amp;raquo;USB网络共享4. Flyme：设置&amp;raquo;便携式热点&amp;raquo;USB网络共享5. 4. 拔网线，断WiFi，ping百度。
+这是100M电信用speedtest测出来的网速,实际体验和win下联网线没差多少。 测试可用的系统：Manjaro17，centos7，Ubuntu16.04，kali2017，debian8。
+如果不被封杀的话，这应该是目前为止最完美的解决方法了，目前一部能联网的安卓机也不难找。但缺点就是每次切换系统都要拔手机，应为如果在win10下开启USB共享，win10会卡。。卡。。卡死。。 不知道今晚推送的秋季更新里会不会修复这个问题。
+   2017-11-1更新
+现在,我发现了更加方便的方法(非原创),原理是:用一台手机通过正常的方式用拨号软件拨号,然后设置路由器上网方式为固定ip,MAC ip等改为手机信息,让电信终端以为路由器就是你已经拨号的手机. 但缺点就是由于ip地址冲突,手机不能上网,你只要重新连接设置好的路由器就行. 然后长时间在线后容易断,此时你要按照以前的连接方式重新设置路由器(连lan口,上网方式为自动获取)再重新用手机拨号上网.再接路由器wan口,固定方式上网.略为麻烦.我的推荐的解决方式 有两种.
+ 买一个网线分线器,两个路由器,把墙上的网线分成两根,一根按照普通方式连接(lan口),一根接wan口.你的手机按照普通方式连接lan口的路由器,拨号网.然后再设置路由器,如果断网,用手机正常拨号一次就行了. 通过连接隔壁寝室的跟你同一个运营商的wifi重新拨号   以前电信还有 一个叫Simple Netkeeper的方式破解,但是我们学校怎么都没用,可能是我理工自校情在此.我们学校并没有所谓的心跳包,所以还不算太坑的,所以对于有心跳包的同学,这种固定ip的方法是不适用的,除非你能够不厌其烦的十几分钟连一次.</description>
+    </item>
+    
+    <item>
+      <title>🎶manjaro 下第三方网易云音乐feeluown安装</title>
+      <link>https://blog.mygoooosh.com/post/2017/manjaro-feeluown/</link>
+      <pubDate>Sat, 14 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.mygoooosh.com/post/2017/manjaro-feeluown/</guid>
+      <description>2017/12更新 当网易云正式版更新后，完全可以即装即用。此文作废.
+以下原文: 手贱把系统换成arch linux系的manjaro了 网易云作为必不可少的软件，首先我考虑的是arch官方库里的netease-cloud-music,安装过程也很顺利。
+$ sudo pacman -S netease-cloud-music 很不幸的是，事情远没有那么简单。安装好了却怎么都打不开，在进程里也能查到网易云的进程。来来折腾了几回后，只能放弃之。。
+通过某度发现了基于Python3的第三方网易云音乐feeluown。
+根据作者提供的信息，通过pip运行（我的pip是Python3的pip）。
+$ sudo pip install felluown 按照作者的说的方法解决依赖。
+$ feeluown-install-dev 但因为作者用的的系统是debian系，用的是&amp;quot;apt-get&amp;quot;。所以返回的是&amp;quot;apt-get notfound&amp;quot;。
+在作者的 issues 中，得知在arch的软件仓库中有feeluown（不得不感叹AUR的强大)。
+于是
+$ yaourt -S feeluown 但不幸的是 有一个依赖 &amp;ldquo;python-quamash&amp;quot;总是安装失败，导致编译失败。 我尝试着用pip安装这个python包
+$ sudo pip install quamash Requirement already satisfied: quamash in ./anaconda3/lib/python3.6/site-packages 什么？？ quamash不是存在么？？ 难道是anaconda自带的 软件用不了？？ 好吧，修改 .bashrc文件，注释掉
+#export PATH=&amp;#34;/home/ss/anaconda3/bin:$PATH 然后再用 yaourt编译安装Python-quamash。
+$ yaourt -S python-quamash 没有遇到错误。 然后
+$ yaourt -S felluown 因为依赖解决了，所以也成功装上了。 点开feeluown图标。弹出的是一个黑色的框。只有几个控制按钮，最最重要的是，点遍全屏也找不到登录按钮，完全没法用。只能卸载
+$ yaourt -R feeluown  现在依赖问题解决了，何不回到开始用pip试试呢？ 安装Python3的pip</description>
+    </item>
+    
+  </channel>
+</rss>

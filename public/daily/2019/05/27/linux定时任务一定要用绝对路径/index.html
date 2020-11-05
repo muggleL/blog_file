@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>✏️Linux 定时任务一定要用绝对路径 - Muggle L</title>
+    <meta property="og:title" content="✏️Linux 定时任务一定要用绝对路径 - Muggle L">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="Linux 用 crontab 定时任务一定要用绝对路径。
+Linux 用 crontab 定时任务一定要用绝对路径。
+Linux 用 crontab 定时任务一定要用绝对路径。
+[&amp;hellip;] 　crontab 执行命令时，默认用户是 root，默认文件夹是 /root。脚本一定要用绝对路径，默认~ 路径是 /root。这个问题坑了我一个礼拜。
+[&amp;hellip;] 2019-8-10 更 &amp;hellip;">
+      <meta property="og:description" content="Linux 用 crontab 定时任务一定要用绝对路径。
+Linux 用 crontab 定时任务一定要用绝对路径。
+Linux 用 crontab 定时任务一定要用绝对路径。
+[&amp;hellip;] 　crontab 执行命令时，默认用户是 root，默认文件夹是 /root。脚本一定要用绝对路径，默认~ 路径是 /root。这个问题坑了我一个礼拜。
+[&amp;hellip;] 2019-8-10 更 &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="https://blog.mygoooosh.com/daily/2019/05/27/linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%80%E5%AE%9A%E8%A6%81%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/">
+    <header class="masthead">
+      <h1><a href="/">Muggle L</a></h1>
+
+<p class="tagline">Technology Is Muggle&#39;s Magic</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">Home</a></li>
+  
+  <li><a href="/search/">Search</a></li>
+  
+  <li><a href="/categories/">Categories</a></li>
+  
+  <li><a href="/tags/">Tags</a></li>
+  
+  <li><a href="/pdfs/">Pdfs</a></li>
+  
+  <li><a href="/slice/">Slice</a></li>
+  
+  <li><a href="https://git.mygoooosh.com/explore/repos">MyGoooosh Git</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+
+
+<h1>✏️Linux 定时任务一定要用绝对路径</h1>
+
+<h3>DG
+  /  2019-05-27</h3>
+<hr>
+
+
+
+      </header>
+
+
+
+
+
+
+<h3 id="重要的事情说三遍">重要的事情说三遍</h3>
+<p>Linux 用 <code>crontab</code> 定时任务一定要用绝对路径。</p>
+<p>Linux 用 <code>crontab</code> 定时任务一定要用绝对路径。</p>
+<p>Linux 用 <code>crontab</code> 定时任务一定要用绝对路径。</p>
+<blockquote>
+<p>　<code>crontab</code> 执行命令时，默认用户是 <code>root</code>，默认文件夹是 <code>/root</code>。脚本一定要用绝对路径，默认<code>~</code> 路径是 <code>/root</code>。这个问题坑了我一个礼拜。</p>
+</blockquote>
+<hr>
+<p><small><font color="red">2019-8-10 更新</font></small></p>
+<blockquote>
+<p><code>crontab -u user</code> 如果不指定 <code>user</code> , 则默认为当前用户。上文中我使用了 <code>sudo</code> 启动才会出现默认用户是 <code>root</code> 的情况。</p>
+</blockquote>
+
+<br>
+<footer>
+    
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/daily/2019/05/23/%E4%BB%8A%E5%A4%A9%E7%BB%88%E4%BA%8E%E8%BF%9B%E5%B0%8F%E7%B1%B3%E5%86%85%E6%B5%8B%E7%BB%84%E4%BA%86/">📱今天终于进小米内测组了</a></span>
+  <span class="nav-next"><a href="/daily/2019/08/26/%E5%B0%8F%E7%B1%B39sepe%E8%B7%B3%E8%BF%87%E8%B0%B7%E6%AD%8C%E9%AA%8C%E8%AF%81/">📱小米 9se PE rom 跳过谷歌验证</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="/js/math-code.js"></script>
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+     
+    color: #EE7700;
+}
+</style>
+<script async src="/js/center-img.js"></script>
+
+    
+
+   
+   <br>
+   <span id="/daily/2019/05/27/linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%80%E5%AE%9A%E8%A6%81%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/" class="leancloud_visitors" data-flag-title="✏️Linux 定时任务一定要用绝对路径">
+     
+     <p></p>
+   </span>
+   <div id="vcomments"></div>
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+     new Valine({
+         el: '#vcomments' ,
+         appId: 'ipR0UGBwhzhpRfzhlNwHl4rR-MdYXbMMI',
+         appKey: 'inbruR2BGaSxMmHIeFO4S0Rv',
+         notify:  false , 
+         verify:  false , 
+         avatar:'monsterid', 
+         placeholder: '说点什么呗~',
+         visitor:  false 
+     });
+   </script>
+
+
+
+  <hr>
+  <div class="copyright">© <a href="https://blog.mygoooosh.com">DG</a> Since 2016 | <a href="https://github.com/muggleL">Github</a> | <a href="https://twitter.com/Modu_Chanyu6">Twitter</a> | Theme By <a href="https://yihui.name">Yihui Xie</a> | <a href="/index.xml">RSS</a> Feed</div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+   

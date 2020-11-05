@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>🏹Rust Trait - Muggle L</title>
+    <meta property="og:title" content="🏹Rust Trait - Muggle L">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="trait是对类型的行为约束，主要有如下4种用法：
+[&amp;hellip;] Rust 的接口有如下特点：
+[&amp;hellip;] 实例1: 为自定义类型实现加法接口
+[&amp;hellip;] use std::ops::Add; #[derive(Debug)] struct Point { x: i32, y: i32, } impl Add for Point { type Output = &amp;hellip;">
+      <meta property="og:description" content="trait是对类型的行为约束，主要有如下4种用法：
+[&amp;hellip;] Rust 的接口有如下特点：
+[&amp;hellip;] 实例1: 为自定义类型实现加法接口
+[&amp;hellip;] use std::ops::Add; #[derive(Debug)] struct Point { x: i32, y: i32, } impl Add for Point { type Output = &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/agate.min.css' rel='stylesheet' type='text/css' />
+
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="https://blog.mygoooosh.com/post/2020/rust-trait/">
+    <header class="masthead">
+      <h1><a href="/">Muggle L</a></h1>
+
+<p class="tagline">Technology Is Muggle&#39;s Magic</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">Home</a></li>
+  
+  <li><a href="/search/">Search</a></li>
+  
+  <li><a href="/categories/">Categories</a></li>
+  
+  <li><a href="/tags/">Tags</a></li>
+  
+  <li><a href="/pdfs/">Pdfs</a></li>
+  
+  <li><a href="/slice/">Slice</a></li>
+  
+  <li><a href="https://git.mygoooosh.com/explore/repos">MyGoooosh Git</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+
+
+<h1>🏹Rust Trait</h1>
+
+<h3>DG
+  /  2020-09-13</h3>
+<hr>
+
+
+
+      </header>
+
+
+
+
+
+
+<p>trait是对类型的行为约束，主要有如下4种用法：</p>
+<ul>
+<li>接口抽象。</li>
+<li>泛型约束。</li>
+<li>抽象类型。</li>
+<li>标签 trait。</li>
+</ul>
+<h2 id="接口抽象">接口抽象</h2>
+<p>Rust 的接口有如下特点：</p>
+<ul>
+<li>可以自定义方法，支持默认实现。</li>
+<li>接口之间可继承不可实现（不可以用一个接口实现另一个接口）。</li>
+<li>同一个接口可以被多个类型实现，但不能被一个类型多次实现。</li>
+<li>impl 关键字为类型实现接口的方法。</li>
+<li>trait 关键字定义接口。</li>
+</ul>
+<p>实例1: 为自定义类型实现加法接口</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::ops::Add;
+
+<span style="color:#75715e">#[derive(Debug)]</span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Point</span> {
+    x: <span style="color:#66d9ef">i32</span>,
+    y: <span style="color:#66d9ef">i32</span>,
+}
+
+<span style="color:#66d9ef">impl</span> Add <span style="color:#66d9ef">for</span> Point {
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Output</span> <span style="color:#f92672">=</span> Point;
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">add</span>(self, other: <span style="color:#a6e22e">Point</span>) -&gt; <span style="color:#a6e22e">Self</span> {
+        Point {
+            x: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">+</span> other.x,
+            y: <span style="color:#a6e22e">self</span>.y <span style="color:#f92672">+</span> other.y,
+        }
+    }
+}
+
+<span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test</span>() {
+    <span style="color:#66d9ef">let</span> point <span style="color:#f92672">=</span> Point{x: <span style="color:#ae81ff">1</span>, y: <span style="color:#ae81ff">3</span>};
+    <span style="color:#66d9ef">let</span> other <span style="color:#f92672">=</span> Point{x: <span style="color:#ae81ff">3</span>, y: <span style="color:#ae81ff">2</span>};
+    <span style="color:#66d9ef">let</span> result <span style="color:#f92672">=</span> point <span style="color:#f92672">+</span> other;
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{:?}.&#34;</span>, result);
+}
+</code></pre></div><blockquote>
+<p>Output 指定返回值类型
+函数种 返回值可以写成 Self、Point 或 Self::Point</p>
+</blockquote>
+<h3 id="trait-接口继承">trait 接口继承</h3>
+<p>子 trait 可以继承父 trait 中定义或者实现的方法。
+以下是一个分页为例的 trait 继承实例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">trait</span> Page {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">set_page</span>(<span style="color:#f92672">&amp;</span>self, p: <span style="color:#66d9ef">i32</span>) {
+        println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Page Defualt: {}.&#34;</span>, p);
+    }
+}
+
+<span style="color:#66d9ef">trait</span> Perpage {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">set_prepage</span>(<span style="color:#f92672">&amp;</span>self, num: <span style="color:#66d9ef">i32</span>) {
+        println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Per Page Defualt: {}&#34;</span>, num);
+    }
+}
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">MyPaginate</span>{
+    page: <span style="color:#66d9ef">i32</span>,
+}
+<span style="color:#66d9ef">impl</span> Page <span style="color:#66d9ef">for</span> MyPaginate {}
+<span style="color:#66d9ef">impl</span> Perpage <span style="color:#66d9ef">for</span> MyPaginate{}
+
+<span style="color:#66d9ef">trait</span> Paginate: <span style="color:#a6e22e">Page</span> <span style="color:#f92672">+</span> Perpage {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">set_skip_page</span>(<span style="color:#f92672">&amp;</span>self, num: <span style="color:#66d9ef">i32</span>) {
+        println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Skip Page: {:?}.&#34;</span>, num);
+    }
+}
+
+<span style="color:#66d9ef">impl</span> <span style="color:#f92672">&lt;</span>T: <span style="color:#a6e22e">Page</span> <span style="color:#f92672">+</span> Perpage<span style="color:#f92672">&gt;</span> Paginate <span style="color:#66d9ef">for</span> T {} <span style="color:#75715e">// 为所有实现了 Page 、 Perpage 的类型实现 Paginate
+</span><span style="color:#75715e"></span>
+
+
+<span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test</span>() {
+    <span style="color:#66d9ef">let</span> my_paginate <span style="color:#f92672">=</span> MyPaginate{page: <span style="color:#ae81ff">1</span>};
+    my_paginate.set_page(<span style="color:#ae81ff">1</span>);
+    my_paginate.set_prepage(<span style="color:#ae81ff">100</span>);
+    my_paginate.set_skip_page(<span style="color:#ae81ff">12</span>);
+}
+</code></pre></div><blockquote>
+<p>为什么不可以直接只实现 Paginate ？？如果真的是继承的话，Paginate里面应该包含了 Page 和 Prepage 的行为。如果像上个例子中的代码，Paginate 直接是一个独立的 trait 不继承 Page 与 Prepage 代码功能也不会有任何变化。可能作者使用的这个例子有问题，这个例子对理解Rust 继承毫无帮助。</p>
+</blockquote>
+<h2 id="泛型约束">泛型约束</h2>
+<p>有一些泛型函数在需要有一定的约束才能运行或者是有意义，比如一个泛型的求和函数，如果传入两个数字，则可以计算加法。如果传入两个字符串，也是可以勉强理解成将两个字符串拼接。但是如果传入两个布尔类型，则就毫无意义了。因此可以使用 trait 对泛型适用的类型进行约束。
+求和泛型约束实例如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust">
+<span style="color:#66d9ef">use</span> std::ops::Add;
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sum</span><span style="color:#f92672">&lt;</span>T: <span style="color:#a6e22e">Add</span><span style="color:#f92672">&lt;</span>T, Output<span style="color:#f92672">=</span>T<span style="color:#f92672">&gt;&gt;</span>(a: <span style="color:#a6e22e">T</span>, b: <span style="color:#a6e22e">T</span>) -&gt; <span style="color:#a6e22e">T</span> { <span style="color:#75715e">// 只有实现了 add 加号两边类型返回值类型一致的类型适用
+</span><span style="color:#75715e"></span>    a <span style="color:#f92672">+</span> b
+}
+
+<span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test</span>() {
+    <span style="color:#66d9ef">let</span> result <span style="color:#f92672">=</span> sum(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100</span>);
+    <span style="color:#75715e">//let r2 = sum(&#34;aa&#34;, &#34;bb&#34;); // &amp;str 没有实现加法 所以报错
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> r3 <span style="color:#f92672">=</span> sum(<span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">2.0</span>);
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;result1: {}, r2: {{}}, r3: {}.&#34;</span>, result, <span style="color:#75715e">/*r2, */</span> r3);
+}
+</code></pre></div><h2 id="抽象类型">抽象类型</h2>
+<h3 id="traitobject">TraitObject</h3>
+<p>TraitObject 是将具有相同行为的具体类型的集合抽象成一个不可实例化的类型，等价于面对对象语言中的抽象类型（Abstract Object）。
+trait 对象实例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">#[derive(Debug)]</span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Foo</span>;
+
+<span style="color:#66d9ef">trait</span> Bar {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">baz</span>(<span style="color:#f92672">&amp;</span>self);
+}
+<span style="color:#66d9ef">impl</span> Bar <span style="color:#66d9ef">for</span> Foo {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">baz</span>(<span style="color:#f92672">&amp;</span>self) {
+        println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{:?}.&#34;</span>, self);
+    }
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">static_dispatch</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>(t: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">T</span>) <span style="color:#66d9ef">where</span> T: <span style="color:#a6e22e">Bar</span> { <span style="color:#75715e">// 这里是 trait 泛型限定
+</span><span style="color:#75715e"></span>    t.baz();
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">dynamic_dispatch</span>(t: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">dyn</span> Bar) { <span style="color:#75715e">// Bar 被当成了一个类型。（动态分发，trait 2018 添加 dyn 关键词跟impl trait 的静态分发以示区别。
+</span><span style="color:#75715e"></span>    t.baz();
+}
+
+<span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test</span>() {
+    <span style="color:#66d9ef">let</span> foo <span style="color:#f92672">=</span> Foo;
+    static_dispatch(<span style="color:#f92672">&amp;</span>foo);
+    dynamic_dispatch(<span style="color:#f92672">&amp;</span>foo);
+    
+}
+</code></pre></div><h3 id="impl-trait">Impl Trait</h3>
+<p>Impl Trait 目前只能在入参和返回值两个地方使用。Impl Trait 抽象限定使用的是静态分发，能够在调用时根据上下文信息推导出具体类型。</p>
+<p>实例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::fmt::Debug;
+
+<span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">trait</span> Fly {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">fly</span>(<span style="color:#f92672">&amp;</span>self) -&gt; <span style="color:#66d9ef">bool</span>;
+}
+
+<span style="color:#75715e">#[derive(Debug)]</span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Duck</span>;
+
+<span style="color:#75715e">#[derive(Debug)]</span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Pig</span>;
+
+<span style="color:#66d9ef">impl</span> Fly <span style="color:#66d9ef">for</span> Duck {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">fly</span>(<span style="color:#f92672">&amp;</span>self) -&gt; <span style="color:#66d9ef">bool</span> {
+        <span style="color:#66d9ef">true</span>
+    }
+}
+
+<span style="color:#66d9ef">impl</span> Fly <span style="color:#66d9ef">for</span> Pig {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">fly</span>(<span style="color:#f92672">&amp;</span>self) -&gt; <span style="color:#66d9ef">bool</span> {
+        <span style="color:#66d9ef">false</span>
+    }
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">fly_static</span>(s: <span style="color:#a6e22e">impl</span> Fly <span style="color:#f92672">+</span> Debug) -&gt; <span style="color:#66d9ef">bool</span> { <span style="color:#75715e">// impl 作为参数类型
+</span><span style="color:#75715e"></span>    s.fly()
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">can_fly</span>(s: <span style="color:#a6e22e">impl</span> Fly <span style="color:#f92672">+</span> Debug) -&gt; <span style="color:#a6e22e">impl</span> Fly { <span style="color:#75715e">// impl trait 作为返回值类型 给返回值添加限定范围
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> s.fly() {
+        println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{:?} can fly.&#34;</span>, s);
+    } <span style="color:#66d9ef">else</span> {
+        println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{:?} can&#39;t fly.&#34;</span>, s);
+    }
+    s
+}
+
+<span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test</span>() {
+    <span style="color:#66d9ef">let</span> pig <span style="color:#f92672">=</span> Pig;
+    <span style="color:#66d9ef">let</span> duck <span style="color:#f92672">=</span> Duck;
+
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{}.&#34;</span>, fly_static(pig));
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{}.&#34;</span>, fly_static(Duck));
+
+    <span style="color:#66d9ef">let</span> pig <span style="color:#f92672">=</span> Pig;
+    <span style="color:#66d9ef">let</span> duck <span style="color:#f92672">=</span> duck;
+    <span style="color:#66d9ef">let</span> _ <span style="color:#f92672">=</span> can_fly(pig);
+    <span style="color:#66d9ef">let</span> _ <span style="color:#f92672">=</span> can_fly(duck);
+}
+</code></pre></div><h2 id="标签-trait">标签 Trait</h2>
+<p>标签 trait 是对类型的约束，当开发者使用这些带有约束标签的类型时，编译器会进行严格检查，确保这些类型是‘合格’的。
+Rust 提供了5个重要的标签trait，都被定义在 <code>std::marker</code> 中，他们分别是:</p>
+<ul>
+<li>Sized trait</li>
+<li>Unsize trait</li>
+<li>Copy trait</li>
+<li>Send trait</li>
+<li>Sync trait</li>
+</ul>
+<h3 id="sized-trait-与-unsize-trait">Sized trait 与 Unsize trait</h3>
+<p>Sized 标签用来功编译器识别可以在编译器确定大小的类型，Unsize则与之相反。
+Sized 是纯粹的标签，该trait 的实现如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">#[lang = </span><span style="color:#e6db74">&#34;sized&#34;</span><span style="color:#75715e">]</span> <span style="color:#75715e">// 表示Sized 的声明为 sized
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">trait</span> Sized {
+    <span style="color:#75715e">// 实现为空
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Rust 中大部分类型都是默认 Sized，如泛型 <code>struct Foo&lt;T&gt;(T)</code> 等价于 <code>struct Foo&lt;T: Sized&gt;(T)</code>。
+Rust 中有只有两种动态大小的类型 <code>trait</code> 和 <code>[T]</code>。 <code>[T]</code> 表示一定数量的 T 在内存中排列，但是不知道具体的数量，所以他带下是不确定的。用 <code>Unsize</code> 来标记。
+<code>?sized</code> 包含了两种标记类型所以 <code>Bar&lt;T: ?sized&gt;(T)</code> 支持编译其可确定大小的类型和不可确定大小的类型。</p>
+<h3 id="copy-trait">Copy trait</h3>
+<h3 id="sync-trait-与-send-trait">Sync trait 与 Send trait</h3>
+<blockquote>
+<p>未完待续 &hellip;</p>
+</blockquote>
+
+<br>
+<footer>
+    
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2020/sql-tutorial/">🥊SQL 拾遗</a></span>
+  <span class="nav-next"><a href="/post/2020/c-sharp-note/">🦝C-Sharp 笔记</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="/js/math-code.js"></script>
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+     
+    color: #EE7700;
+}
+</style>
+<script async src="/js/center-img.js"></script>
+
+    
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/yaml.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/tex.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/go.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/powershell.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/sql.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/bash.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/rust.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c#.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/java.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/cpp.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+   
+   <br>
+   <span id="/post/2020/rust-trait/" class="leancloud_visitors" data-flag-title="🏹Rust Trait">
+     
+     <p></p>
+   </span>
+   <div id="vcomments"></div>
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+     new Valine({
+         el: '#vcomments' ,
+         appId: 'ipR0UGBwhzhpRfzhlNwHl4rR-MdYXbMMI',
+         appKey: 'inbruR2BGaSxMmHIeFO4S0Rv',
+         notify:  false , 
+         verify:  false , 
+         avatar:'monsterid', 
+         placeholder: '说点什么呗~',
+         visitor:  false 
+     });
+   </script>
+
+
+
+  <hr>
+  <div class="copyright">© <a href="https://blog.mygoooosh.com">DG</a> Since 2016 | <a href="https://github.com/muggleL">Github</a> | <a href="https://twitter.com/Modu_Chanyu6">Twitter</a> | Theme By <a href="https://yihui.name">Yihui Xie</a> | <a href="/index.xml">RSS</a> Feed</div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+   

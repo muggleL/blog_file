@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>🖥️VMware 虚拟机克隆 - Muggle L</title>
+    <meta property="og:title" content="🖥️VMware 虚拟机克隆 - Muggle L">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="具体步骤为
+[&amp;hellip;] 复制虚拟机
+[&amp;hellip;] 设置静态 IP
+[&amp;hellip;] Windows Terminal 设置
+[&amp;hellip;] [&amp;hellip;] 一定要选择创建完整克隆
+[&amp;hellip;] 直接克隆虚拟机有可能会出现多个虚拟机同一个 IP 的情况，可以通过配置静态 IP 来解决这个问题。
+通过 ip a 命令（Linux）查看复制之前虚拟机 IP。 &amp;hellip;">
+      <meta property="og:description" content="具体步骤为
+[&amp;hellip;] 复制虚拟机
+[&amp;hellip;] 设置静态 IP
+[&amp;hellip;] Windows Terminal 设置
+[&amp;hellip;] [&amp;hellip;] 一定要选择创建完整克隆
+[&amp;hellip;] 直接克隆虚拟机有可能会出现多个虚拟机同一个 IP 的情况，可以通过配置静态 IP 来解决这个问题。
+通过 ip a 命令（Linux）查看复制之前虚拟机 IP。 &amp;hellip;">
+      
+    
+
+    
+    
+    <meta name="twitter:image" content="https://i.loli.net/2020/08/03/AnZhlWq9Ir8LYSo.png">
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/agate.min.css' rel='stylesheet' type='text/css' />
+
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="https://blog.mygoooosh.com/post/2020/clone-vm/">
+    <header class="masthead">
+      <h1><a href="/">Muggle L</a></h1>
+
+<p class="tagline">Technology Is Muggle&#39;s Magic</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">Home</a></li>
+  
+  <li><a href="/search/">Search</a></li>
+  
+  <li><a href="/categories/">Categories</a></li>
+  
+  <li><a href="/tags/">Tags</a></li>
+  
+  <li><a href="/pdfs/">Pdfs</a></li>
+  
+  <li><a href="/slice/">Slice</a></li>
+  
+  <li><a href="https://git.mygoooosh.com/explore/repos">MyGoooosh Git</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+
+
+<h1>🖥️VMware 虚拟机克隆</h1>
+
+<h3>DG
+  /  2020-08-03</h3>
+<hr>
+
+
+
+      </header>
+
+
+
+
+
+
+<p>具体步骤为</p>
+<ul>
+<li>
+<p>复制虚拟机</p>
+</li>
+<li>
+<p>设置静态 IP</p>
+</li>
+<li>
+<p>Windows Terminal 设置</p>
+<h2 id="复制虚拟机">复制虚拟机</h2>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2020/08/03/AnZhlWq9Ir8LYSo.png" alt="批注 2020-08-03 194629.png"></p>
+<p><img src="https://i.loli.net/2020/08/03/Q9qJWCI2ap3BLKP.png" alt="批注 2020-08-03 194932.png"></p>
+<blockquote>
+<p>一定要选择创建完整克隆</p>
+</blockquote>
+<h2 id="修改虚拟机名称以及设置静态-ip">修改虚拟机名称以及设置静态 IP</h2>
+<p>直接克隆虚拟机有可能会出现多个虚拟机同一个 IP 的情况，可以通过配置静态 IP 来解决这个问题。</p>
+<p>通过 <code>ip a</code> 命令（Linux）查看复制之前虚拟机 IP。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ss@manager131:~$ ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span style="color:#ae81ff">65536</span> qdisc noqueue state UNKNOWN group default qlen <span style="color:#ae81ff">1000</span>
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style="color:#ae81ff">1500</span> qdisc fq_codel state UP group default qlen <span style="color:#ae81ff">1000</span>
+    link/ether 00:0c:29:7a:6e:d2 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.174.131/24 brd 192.168.174.255 scope global ens33
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe7a:6ed2/64 scope link
+       valid_lft forever preferred_lft forever
+</code></pre></div><p>如上可以看出 虚拟机的 IP 为 <code>192.168.174.131</code>，则克隆后的虚拟机的 IP 应该设置为与这个 IP 同一网段下。</p>
+<p>在新的 Ubuntu 中 设置静态 IP 是配置 <code>netplan</code>。修改 <code>/etc/netplan/00-installer-config.yaml</code> 。写入如下内容：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">   <span style="color:#75715e"># This is the network config written by &#39;subiquity&#39;</span>
+   network:
+     ethernets:
+       ens33:
+         dhcp4: false
+         addresses:
+                 - 192.168.174.131/24
+         gateway4: 192.168.174.2
+         nameservers:
+                 addresses:
+                         - 8.8.8.8
+     version: <span style="color:#ae81ff">2</span>      
+</code></pre></div><blockquote>
+<p>注意文件内容一定要遵循 <a href="http://www.ruanyifeng.com/blog/2016/07/yaml.html">Yaml 的格式</a></p>
+</blockquote>
+<blockquote>
+<p>注意当虚拟机网络设置为 net 时，网关为 <code>192.168.174.2</code> 并不是 <code>192.168.174.1</code>。网络状态为桥接时，通常为路由器 IP，配置错了可能上不了网。</p>
+</blockquote>
+<p>然后执行 <code>netplan apply</code> 提交更改。</p>
+<p>为了让每台虚拟机更具有辨识度，简易修改 VMware 中虚拟机的名称以及虚拟机的 <code>hostname</code>，虚拟机名称可以直接重命名。</p>
+<p>修改 <code>hostname</code> 方法为:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo hostnamectl set-hostname worker133
+</code></pre></div><blockquote>
+<p>名称最好要有意义，比如 <code>worker133</code> 意为该虚拟机是<code>docker swarm</code> 中的从节点（node），IP 尾号为 133</p>
+</blockquote>
+<h2 id="windows-terminal-设置">Windows Terminal 设置</h2>
+<p>在 VMware 的某次更新中，VMware 虚拟机可以在后台运行。</p>
+<p><img src="https://i.loli.net/2020/08/03/V4gzWCj87wQAd6r.png" alt="批注 2020-08-03 201146.png"></p>
+<p>微软的 Windows Terminal 是一个牛逼的终段模拟器</p>
+<p>用 Windows Terminal 连接的虚拟机的配置如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">            {
+                <span style="color:#f92672">&#34;guid&#34;</span>: <span style="color:#e6db74">&#34;{50347a88-d4d6-403a-ad5f-fc0776b9f38b}&#34;</span>,
+                <span style="color:#f92672">&#34;hidden&#34;</span>: <span style="color:#66d9ef">false</span>,
+                <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;worker133&#34;</span>,
+                <span style="color:#f92672">&#34;commandline&#34;</span> :<span style="color:#e6db74">&#34;ssh ss@192.168.174.133&#34;</span>,
+            }<span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><p>其中 <code>guid</code> 可以通过<a href="https://www.guidgen.com/">Create GUIDs online</a>在线生成。</p>
+<h3 id="使用公钥登录服务器">使用公钥登录服务器</h3>
+<ol>
+<li>
+<p>windows 生成公钥</p>
+<p>打开 <code>powershell</code> 执行 <code>ssh-keygen</code> 然后按照提示输入（或者一路回车），公钥就会生成在当前用户的 .ssh 文件夹下，名称为 <code>id_rsa.pub</code></p>
+</li>
+<li>
+<p>发送公钥到服务器</p>
+<p>切换到公钥所在目录</p>
+<p>powershell 执行:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scp id_rsa.pub ss@192.168.174.133:~
+</code></pre></div><p>然后登录服务器执行：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir .ssh
+cat ./id_rsa.pub &gt;&gt; .ssh/authorized_keys
+</code></pre></div></li>
+</ol>
+
+<br>
+<footer>
+    
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2020/docker-swarm/">⚓️🐛Docker Swarm</a></span>
+  <span class="nav-next"><a href="/post/2020/sql-tutorial/">🥊SQL 拾遗</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="/js/math-code.js"></script>
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+     
+    color: #EE7700;
+}
+</style>
+<script async src="/js/center-img.js"></script>
+
+    
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/yaml.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/tex.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/go.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/powershell.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/sql.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/bash.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/rust.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c#.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/java.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/cpp.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+   
+   <br>
+   <span id="/post/2020/clone-vm/" class="leancloud_visitors" data-flag-title="🖥️VMware 虚拟机克隆">
+     
+     <p></p>
+   </span>
+   <div id="vcomments"></div>
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+     new Valine({
+         el: '#vcomments' ,
+         appId: 'ipR0UGBwhzhpRfzhlNwHl4rR-MdYXbMMI',
+         appKey: 'inbruR2BGaSxMmHIeFO4S0Rv',
+         notify:  false , 
+         verify:  false , 
+         avatar:'monsterid', 
+         placeholder: '说点什么呗~',
+         visitor:  false 
+     });
+   </script>
+
+
+
+  <hr>
+  <div class="copyright">© <a href="https://blog.mygoooosh.com">DG</a> Since 2016 | <a href="https://github.com/muggleL">Github</a> | <a href="https://twitter.com/Modu_Chanyu6">Twitter</a> | Theme By <a href="https://yihui.name">Yihui Xie</a> | <a href="/index.xml">RSS</a> Feed</div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+   

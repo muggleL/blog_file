@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>💻linux 开机出现grub rescue的恢复方法 - Muggle L</title>
+    <meta property="og:title" content="💻linux 开机出现grub rescue的恢复方法 - Muggle L">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="昨天，微软推送了win10的秋季大更新，我也及时接收了。但在更新重启时，正常的grub引导界面进不去了。屏幕上只出现
+[&amp;hellip;] grub rescue &amp;gt; 根据百度的方法
+grub rescue &amp;gt; lsgrub rescue &amp;gt; &amp;hellip;">
+      <meta property="og:description" content="昨天，微软推送了win10的秋季大更新，我也及时接收了。但在更新重启时，正常的grub引导界面进不去了。屏幕上只出现
+[&amp;hellip;] grub rescue &amp;gt; 根据百度的方法
+grub rescue &amp;gt; lsgrub rescue &amp;gt; &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/agate.min.css' rel='stylesheet' type='text/css' />
+
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="https://blog.mygoooosh.com/post/2017/linux-grub-rescue/">
+    <header class="masthead">
+      <h1><a href="/">Muggle L</a></h1>
+
+<p class="tagline">Technology Is Muggle&#39;s Magic</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">Home</a></li>
+  
+  <li><a href="/search/">Search</a></li>
+  
+  <li><a href="/categories/">Categories</a></li>
+  
+  <li><a href="/tags/">Tags</a></li>
+  
+  <li><a href="/pdfs/">Pdfs</a></li>
+  
+  <li><a href="/slice/">Slice</a></li>
+  
+  <li><a href="https://git.mygoooosh.com/explore/repos">MyGoooosh Git</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+
+
+<h1>💻linux 开机出现grub rescue的恢复方法</h1>
+
+<h3>DG
+  /  2017-10-19</h3>
+<hr>
+
+
+
+      </header>
+
+
+
+
+
+
+<p>昨天，微软推送了win10的秋季大更新，我也及时接收了。但在更新重启时，正常的grub引导界面进不去了。屏幕上只出现</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">grub rescue &gt;
+</code></pre></div><p>根据百度的方法</p>
+<pre><code>grub rescue &gt; ls
+grub rescue &gt; (hd0),(hd0,gpt5),(hd0,gpt4),(hd0,gpt3),(hd0,gpt2),(hd0,gpt1),(hd1)(....)
+</code></pre>
+<p>我明明记得第一个硬盘只有四个分区（efi，windows保留分区，win10系统分区，manjaro系统分区），这会儿怎么出现五个，应该是微软搞的鬼。接下来弄清楚grub到底在那个分区。</p>
+<p>执行</p>
+<pre><code>grub rescue &gt; ls (hd0,gpt5)/boot/grub
+grub rescue &gt; .....
+</code></pre><p>如果系统在gtp5的话，它会列出对应的文件，如果不在就会报错。一个一个试。</p>
+<pre><code>grub rescue &gt; set root=(hd0,gpt5)
+grub rescue &gt; set prefix=(hd0,gpt5)/boot/grub
+grub rescue &gt; insmod normal
+grub rescue &gt; normal
+</code></pre><p>这时候应该能启动到熟悉的grub引导界面，但此时并没有完全修复，应该启动linux</p>
+<p>执行以下命令，重新生成grub就可以了。</p>
+<pre><code>sudo update-grub
+sudo grub-install /dev/sda
+sudo reboot
+</code></pre><p>还有一种思路，启动不了不就是因为从磁盘的第四个分区变成了第五个吗，我把第四个分区删掉不就恢复了吗？
+所以，可以进入pe，把没什么用的第四个分区删掉，再扩展到第三个分区，这时重启就恢复原样了。</p>
+<blockquote>
+<p>参考：<a href="https://www.douban.com/note/66041888/">grub rescue模式下修复</a></p>
+</blockquote>
+
+<br>
+<footer>
+    
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2017/2017-10-17-linux-network/">🔗linux连接校园网的暂时解决方法</a></span>
+  <span class="nav-next"><a href="/post/2017/%E7%BE%8E%E4%BA%BA%E8%B5%8B%E4%B8%89%E7%AF%87/">📚美人赋三篇</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="/js/math-code.js"></script>
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+     
+    color: #EE7700;
+}
+</style>
+<script async src="/js/center-img.js"></script>
+
+    
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/yaml.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/tex.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/go.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/powershell.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/sql.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/bash.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/rust.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c#.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/java.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/cpp.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+   
+   <br>
+   <span id="/post/2017/linux-grub-rescue/" class="leancloud_visitors" data-flag-title="💻linux 开机出现grub rescue的恢复方法">
+     
+     <p></p>
+   </span>
+   <div id="vcomments"></div>
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+     new Valine({
+         el: '#vcomments' ,
+         appId: 'ipR0UGBwhzhpRfzhlNwHl4rR-MdYXbMMI',
+         appKey: 'inbruR2BGaSxMmHIeFO4S0Rv',
+         notify:  false , 
+         verify:  false , 
+         avatar:'monsterid', 
+         placeholder: '说点什么呗~',
+         visitor:  false 
+     });
+   </script>
+
+
+
+  <hr>
+  <div class="copyright">© <a href="https://blog.mygoooosh.com">DG</a> Since 2016 | <a href="https://github.com/muggleL">Github</a> | <a href="https://twitter.com/Modu_Chanyu6">Twitter</a> | Theme By <a href="https://yihui.name">Yihui Xie</a> | <a href="/index.xml">RSS</a> Feed</div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+   

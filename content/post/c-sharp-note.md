@@ -1,13 +1,15 @@
 ---
 title: 🦝C-Sharp 笔记
+date: '2020-11-05'
 author: DG
 tags:
-  - C#
-categories:
   - 编程
-date: '2020-11-06'
-slug: 🦝C-Sharp 笔记
+  - 代码
+categories: 
+  - C#
+slug: C-Sharp-note
 ---
+
 
 # C# 笔记
 

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>📱小米 9se PE rom 跳过谷歌验证 - Muggle L</title>
+    <meta property="og:title" content="📱小米 9se PE rom 跳过谷歌验证 - Muggle L">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="9se 的第一版本 pixelexperience 包出来了，第一次开机居然死在了谷歌验证上。
+类原生 ROM 跳过谷歌验证的方式目前常用的有四种：
+[&amp;hellip;] 刷入 rom 时附带输入跳过验证的包。
+[&amp;hellip;] 刷入其他没有谷歌验证的包，双清后再刷入需要验证的包
+[&amp;hellip;] 按一定顺序点四角（看运气）
+[&amp;hellip;] adb 跳过
+[&amp;hellip;] &amp;hellip;">
+      <meta property="og:description" content="9se 的第一版本 pixelexperience 包出来了，第一次开机居然死在了谷歌验证上。
+类原生 ROM 跳过谷歌验证的方式目前常用的有四种：
+[&amp;hellip;] 刷入 rom 时附带输入跳过验证的包。
+[&amp;hellip;] 刷入其他没有谷歌验证的包，双清后再刷入需要验证的包
+[&amp;hellip;] 按一定顺序点四角（看运气）
+[&amp;hellip;] adb 跳过
+[&amp;hellip;] &amp;hellip;">
+      
+    
+
+    
+    
+    <meta name="twitter:image" content="https://i.loli.net/2019/08/27/MA8slmz1ro4QSTW.png">
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/agate.min.css' rel='stylesheet' type='text/css' />
+
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="https://blog.mygoooosh.com/daily/2019/08/26/%E5%B0%8F%E7%B1%B39sepe%E8%B7%B3%E8%BF%87%E8%B0%B7%E6%AD%8C%E9%AA%8C%E8%AF%81/">
+    <header class="masthead">
+      <h1><a href="/">Muggle L</a></h1>
+
+<p class="tagline">Technology Is Muggle&#39;s Magic</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">Home</a></li>
+  
+  <li><a href="/search/">Search</a></li>
+  
+  <li><a href="/categories/">Categories</a></li>
+  
+  <li><a href="/tags/">Tags</a></li>
+  
+  <li><a href="/pdfs/">Pdfs</a></li>
+  
+  <li><a href="/slice/">Slice</a></li>
+  
+  <li><a href="https://git.mygoooosh.com/explore/repos">MyGoooosh Git</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+
+
+<h1>📱小米 9se PE rom 跳过谷歌验证</h1>
+
+<h3>DG
+  /  2019-08-26</h3>
+<hr>
+
+
+
+      </header>
+
+
+
+
+
+
+<p>9se 的第一版本 <a href="https://download.pixelexperience.org/grus/">pixelexperience</a> 包出来了，第一次开机居然死在了谷歌验证上。</p>
+<p>类原生 ROM 跳过谷歌验证的方式目前常用的有四种：</p>
+<ul>
+<li>
+<p>刷入 rom 时附带输入跳过验证的包。</p>
+</li>
+<li>
+<p>刷入其他没有谷歌验证的包，双清后再刷入需要验证的包</p>
+</li>
+<li>
+<p>按一定顺序点四角（看运气）</p>
+<p><img src="https://i.loli.net/2019/08/27/MA8slmz1ro4QSTW.png" alt="2839910738.png"></p>
+</li>
+<li>
+<p>adb 跳过</p>
+</li>
+</ul>
+<p>这要 rom 默认打开 usb 调试。或者进入 recovery 中进行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">adb shell settings put secure user_setup_complete <span style="color:#ae81ff">1</span>
+adb shell settings put global device_provisioned <span style="color:#ae81ff">1</span>
+</code></pre></div><p>参考：</p>
+<blockquote>
+<p><a href="http://www.miui.com/thread-19316176-1-1.html">[教程] 教你们怎么跳过Android 9的谷歌开机验证	</a></p>
+<p><a href="https://www.himiku.com/archives/6.html">如何跳过Google开机设置/验证/向导</a></p>
+</blockquote>
+
+<br>
+<footer>
+    
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/daily/2019/05/27/linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%80%E5%AE%9A%E8%A6%81%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/">✏️Linux 定时任务一定要用绝对路径</a></span>
+  <span class="nav-next"><a href="/daily/2019/09/10/%E5%85%A5%E6%89%8Barduino%E6%9D%BF%E5%AD%90%E4%B8%80%E5%9D%97/">🔧入手 Arduino 板子一块</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="/js/math-code.js"></script>
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+     
+    color: #EE7700;
+}
+</style>
+<script async src="/js/center-img.js"></script>
+
+    
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/yaml.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/tex.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/go.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/powershell.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/sql.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/bash.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/rust.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c#.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/java.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/cpp.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+   
+   <br>
+   <span id="/daily/2019/08/26/%E5%B0%8F%E7%B1%B39sepe%E8%B7%B3%E8%BF%87%E8%B0%B7%E6%AD%8C%E9%AA%8C%E8%AF%81/" class="leancloud_visitors" data-flag-title="📱小米 9se PE rom 跳过谷歌验证">
+     
+     <p></p>
+   </span>
+   <div id="vcomments"></div>
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+     new Valine({
+         el: '#vcomments' ,
+         appId: 'ipR0UGBwhzhpRfzhlNwHl4rR-MdYXbMMI',
+         appKey: 'inbruR2BGaSxMmHIeFO4S0Rv',
+         notify:  false , 
+         verify:  false , 
+         avatar:'monsterid', 
+         placeholder: '说点什么呗~',
+         visitor:  false 
+     });
+   </script>
+
+
+
+  <hr>
+  <div class="copyright">© <a href="https://blog.mygoooosh.com">DG</a> Since 2016 | <a href="https://github.com/muggleL">Github</a> | <a href="https://twitter.com/Modu_Chanyu6">Twitter</a> | Theme By <a href="https://yihui.name">Yihui Xie</a> | <a href="/index.xml">RSS</a> Feed</div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+   

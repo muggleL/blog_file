@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>🚌JavaScript 基础 - Muggle L</title>
+    <meta property="og:title" content="🚌JavaScript 基础 - Muggle L">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="JavaScript 是一门坑比较多的语言。这里记录了一些基本数据类型里面不容易注意到的点，比如：字符串的表示方式、基本数据类型的比较等等。
+[&amp;hellip;] [&amp;hellip;] JavaScript 有六种数据类型 分别是 number, string, boolean, null, undefined
+[&amp;hellip;] let a = &amp;#39;this is a &amp;hellip;">
+      <meta property="og:description" content="JavaScript 是一门坑比较多的语言。这里记录了一些基本数据类型里面不容易注意到的点，比如：字符串的表示方式、基本数据类型的比较等等。
+[&amp;hellip;] [&amp;hellip;] JavaScript 有六种数据类型 分别是 number, string, boolean, null, undefined
+[&amp;hellip;] let a = &amp;#39;this is a &amp;hellip;">
+      
+    
+
+    
+    
+    <meta name="twitter:image" content="https://i.loli.net/2019/03/23/5c959a00eb972.png">
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/agate.min.css' rel='stylesheet' type='text/css' />
+
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="https://blog.mygoooosh.com/post/2019/js-foundation/">
+    <header class="masthead">
+      <h1><a href="/">Muggle L</a></h1>
+
+<p class="tagline">Technology Is Muggle&#39;s Magic</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">Home</a></li>
+  
+  <li><a href="/search/">Search</a></li>
+  
+  <li><a href="/categories/">Categories</a></li>
+  
+  <li><a href="/tags/">Tags</a></li>
+  
+  <li><a href="/pdfs/">Pdfs</a></li>
+  
+  <li><a href="/slice/">Slice</a></li>
+  
+  <li><a href="https://git.mygoooosh.com/explore/repos">MyGoooosh Git</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+
+
+<h1>🚌JavaScript 基础</h1>
+
+<h3>DG
+  /  2019-03-23</h3>
+<hr>
+
+
+
+      </header>
+
+
+
+
+
+
+<p>JavaScript 是一门坑比较多的语言。这里记录了一些基本数据类型里面不容易注意到的点，比如：字符串的表示方式、基本数据类型的比较等等。</p>
+<h2 id="javascript-编程风格">JavaScript 编程风格</h2>
+<p><img src="https://i.loli.net/2019/03/23/5c959a00eb972.png" alt="code-style@2x.png"></p>
+<h2 id="javascript-基本数据类型">JavaScript 基本数据类型</h2>
+<p>JavaScript 有六种数据类型 分别是 number, string,  boolean, null, undefined</p>
+<h3 id="字符串的表示方式">字符串的表示方式</h3>
+<ol>
+<li>单引号：</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;this is a string&#39;</span>;
+</code></pre></div><ol start="2">
+<li>双引号</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;this is a string&#34;</span>;
+</code></pre></div><ol start="3">
+<li>反引号</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`this num is </span><span style="color:#e6db74">${</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>; <span style="color:#75715e">//this num is 3
+</span></code></pre></div><p>用反引号表示字符串时，允许通过 ${&hellip;} 嵌入表达式，表达式的结果将成为字符串的一部份。</p>
+<h3 id="数据的一般比较------">数据的一般比较 （==, &gt;, &lt;, !=, &gt;=, &lt;=）</h3>
+<p>数据进行双等号比较时，遵循以下三种规则</p>
+<ol>
+<li>
+<p>当两边数据类型相等时， 按照通用规则进行比较</p>
+</li>
+<li>
+<p>当两边数据类型不等且不涉及 <code>null</code> 与 <code>undefined</code> 时，<strong>先转换成 <code>Number</code> 类型，再进行比较。</strong></p>
+</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">//true
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">//false
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">true</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">//true
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">false</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">//true
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+Boolean(<span style="color:#a6e22e">a</span>); <span style="color:#75715e">//false
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+Boolean(<span style="color:#a6e22e">b</span>); <span style="color:#75715e">//true
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">a</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">b</span>; <span style="color:#75715e">//true
+</span></code></pre></div><ol start="3">
+<li>当涉及到 <code>null</code> 和 <code>undefined</code> 时:</li>
+</ol>
+<ul>
+<li>进行<code>==</code>比较时，不会发生类型转换，默认两者相等。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">null</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">undefined</span>; <span style="color:#75715e">//true
+</span></code></pre></div><ul>
+<li>当进行 <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>!=</code> 比较时，<strong><code>null</code> 会被转换成 <code>0</code>, <code>undefined</code> 会被转换成 <code>NaN</code></strong></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">null</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e">//false
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">null</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e">//true
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">null</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e">//false
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">undefined</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">//false
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">undefined</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">//false
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">undefined</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">//false
+</span></code></pre></div><p><strong>JavaScript 中 <code>===</code>不会进行任何字符转换，因此这是推荐的使用方式</strong></p>
+<h3 id="-的用法"><code>+</code> 的用法</h3>
+<p>JavaScript 中 <code>+</code> 号可以用来将数据类型转换成整型</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;02&#39;</span> <span style="color:#75715e">//2
+</span><span style="color:#75715e"></span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;20f&#39;</span> <span style="color:#75715e">//NaN
+</span><span style="color:#75715e"></span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;2&#39;</span><span style="color:#f92672">/</span><span style="color:#ae81ff">0</span> <span style="color:#75715e">//Infinity
+</span></code></pre></div><h3 id="alert-confirm-prompt">alert， confirm， prompt</h3>
+<ul>
+<li><code>alert</code> 弹出对话框</li>
+<li><code>confirm</code> 弹出选择框（true or false）</li>
+<li><code>prompt</code> 弹出输入框</li>
+</ul>
+<h2 id="javascript-函数">JavaScript 函数</h2>
+<h3 id="函数声明">函数声明</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+  }
+</code></pre></div><h3 id="函数表达式">函数表达式</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+}
+</code></pre></div><p>函数表达式的函数也可以有名字， 不过该名称只在函数内可见</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fact</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fact_iter</span>(<span style="color:#a6e22e">n</span>) {
+  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">n</span><span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>){
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">fact_iter</span>(<span style="color:#a6e22e">n</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+  }
+};
+</code></pre></div><h3 id="箭头函数">箭头函数</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+};
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sumOf1And2</span> <span style="color:#f92672">=</span> () =&gt; <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">abs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span> =&gt; (<span style="color:#a6e22e">a</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)<span style="color:#f92672">?</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">a</span>;
+</code></pre></div><p><strong>函数声明式函数在初始化时创建，函数表达式和箭头函数在脚本执行到该行时创建。所以函数声明式函数可以先调用，在写函数体</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">sum</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>); <span style="color:#75715e">//这么写没问题
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">sum</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>); <span style="color:#75715e">//这里会出错 sum is not defined
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+}
+</code></pre></div><hr>
+<blockquote>
+<p>参考:</p>
+<ol>
+<li><a href="http://javascript.info/">The Modern Javascript Tutorial</a></li>
+<li><a href="http://zh.javascript.info/">现代 Javascript 教程</a></li>
+</ol>
+</blockquote>
+<br>
+<footer>
+    
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2018/how-to-use-git/">🍎git的使用方法记录。</a></span>
+  <span class="nav-next"><a href="/post/2019/js-object/">🧍‍♀️JavaScript 对象</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="/js/math-code.js"></script>
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+     
+    color: #EE7700;
+}
+</style>
+<script async src="/js/center-img.js"></script>
+
+    
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/yaml.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/tex.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/go.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/powershell.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/sql.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/bash.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/rust.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c#.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/java.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/c.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/languages/cpp.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+   
+   <br>
+   <span id="/post/2019/js-foundation/" class="leancloud_visitors" data-flag-title="🚌JavaScript 基础">
+     
+     <p></p>
+   </span>
+   <div id="vcomments"></div>
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+     new Valine({
+         el: '#vcomments' ,
+         appId: 'ipR0UGBwhzhpRfzhlNwHl4rR-MdYXbMMI',
+         appKey: 'inbruR2BGaSxMmHIeFO4S0Rv',
+         notify:  false , 
+         verify:  false , 
+         avatar:'monsterid', 
+         placeholder: '说点什么呗~',
+         visitor:  false 
+     });
+   </script>
+
+
+
+  <hr>
+  <div class="copyright">© <a href="https://blog.mygoooosh.com">DG</a> Since 2016 | <a href="https://github.com/muggleL">Github</a> | <a href="https://twitter.com/Modu_Chanyu6">Twitter</a> | Theme By <a href="https://yihui.name">Yihui Xie</a> | <a href="/index.xml">RSS</a> Feed</div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+   
