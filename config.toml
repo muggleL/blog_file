@@ -52,7 +52,7 @@ footnotereturnlinkcontents = "↩"
     footer = "&copy; [DG](https://blog.mygoooosh.com) Since 2016 | [Github](https://github.com/muggleL) | [Twitter](https://twitter.com/Modu_Chanyu6) | Theme By [Yihui Xie](https://yihui.name) | [RSS](/index.xml) Feed"
     highlightjsVersion = "9.15.10"
     highlightjsCDN = "//cdn.jsdelivr.net"
-    highlightjsLang = ["yaml", "tex", "go", "powershell", "sql", "bash", "rust"]
+    highlightjsLang = ["yaml", "tex", "go", "powershell", "sql", "bash", "rust", "c#", "java", "c", "cpp"]
     highlightjsTheme = "agate"
 
 [params.valine]
