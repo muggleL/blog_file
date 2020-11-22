@@ -7,7 +7,7 @@ categories:
 slug: docker-swarm
 ---
 
-# 前戏
+# 0x00
 
 ## 修改主机名称
 
@@ -67,7 +67,7 @@ docker swarm join \
 
 此时在 `manage` 服务器中运行 `docker service ls` 可以看见 `worker` 节点了
 
-# 进行
+# 0x01
 
 ## 运行一个服务
 
@@ -314,7 +314,7 @@ docker service create --name my-web -p 8080:80 --replicas 2 nginx
 
 `swarm` 会将访问 `nginx` 的负载均衡到两个服务器上，但是四个服务器在同一个网络中，任意访问一个服务器的 `8080` 端口都能访问到 `nginx`
 
-# 深入
+# 0x02
 
 ## docker swarm 与 docker compose 的结合
 
